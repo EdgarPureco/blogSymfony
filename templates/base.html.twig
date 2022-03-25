@@ -1,19 +1,77 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/assets/style.css">
+    <title>{% block title %}{% endblock %}Video-Games</title>
+    {% block stylesheets %}{% endblock %}
+</head>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
+{% apply inline_css(source("styles/base.css")) %}
+<body>
+
+<header>
+    <nav class="nav"> 
+<h1 class="logo">VIDEOGAMES</h1>
+  <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+  <ul class="nav-list">
+    <a href="{{ path('index') }}"><li>Accueil</li></a>
+    <a href="{{ path('cart_index') }}"><li>Panier</li></a>
+        {% if is_granted('ROLE_USER') %}
+                
+            <b>{{ app.user.name }} - {{ app.user.mail }}</b>
+                    
+            <a href="{{ path('user_orders_index') }}"><li>Mes commandes</li></a>
+            <a href="{{ path('user_edit_index') }}"><li>Mon compte</li></a>
+            <a href="{{ path('security_logout') }}"><li>Déconnexion</li></a>
+                        
+                    
+        {% else %}
+        <a href="{{ path('security_login') }}"><li>Connexion</li></a>
+        <a href="{{ path('user_add') }}"><li>Inscription</li></a>
+        {% endif %}
+    <a href="{{ path('products_index') }}"><li>Tous les produits</li></a>
+            
+            <li>Catégories</li>
+                
+                {% for category in categoriesRepository.findAll %}
+                <a href="{{ path('categories_get_products', { id: category.id }) }}"><li>{{ category.name }}</li></a>
+                {% endfor %}
+                    
+                
+        {% if is_granted('ROLE_ADMIN') %}
+                
+                <b>Administration</b>
+                    
+                <a href="{{ path('admin_products_add') }}"><li>Ajouter un produit</li></a>
+                <a href="{{ path('admin_categories_add') }}"><li>Ajouter une catégorie</li></a>
+                <a href="{{ path('admin_orders_list') }}"><li>Liste des commandes</li></a>
+                <a href="{{ path('admin_users_list') }}"><li>Liste des utilisateurs</li></a>
+                         
+        {% endif %}
+  </ul>
+</nav>
+</header>
+
+<br><br>
+
+    <main>
+        <div>
+            {% for message in app.flashes('success') %}
+                <div>{{ message }}</div>
+            {% endfor %}
+        </div>
+
+        <h2>{{ block('title') }}</h2>
+
         {% block body %}{% endblock %}
-    </body>
+    </main>
+
+
+{% block javascripts %}{% endblock %}
+</body>
+{% endapply %}
 </html>

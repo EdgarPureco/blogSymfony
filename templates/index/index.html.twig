@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+{% apply inline_css(source("styles/base.css")) %}
+<div class="box">
+<h1>Accueil</h1>
+<br>
+    <h3>Produits les plus vendus</h3>
+
+    <div style="display: flex">
+        {% for product in products %}
+            {% include 'shared/product-card.html.twig' %}
+        {% endfor %}
+    </div>
+    </div>
+    {% endapply %}
+{% endblock %}

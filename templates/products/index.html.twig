@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+{% apply inline_css(source("styles/base.css")) %}
+<div class="box">
+<h1>Listes des produits</h1>
+    <div style="display: flex; flex-wrap: wrap">
+        {% for product in products | reverse %}
+            {% include 'shared/product-card.html.twig' %}
+        {% endfor %}
+    </div>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('admin_products_add') }}">Ajouter un produit</a>
+    {% endif %}
+    </div>
+    {% endapply %}
+
+{% endblock %}

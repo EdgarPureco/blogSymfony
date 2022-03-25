@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% apply inline_css(source("styles/login.css")) %}
+    <form method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        <div class="box">
+        <h1>Connexion</h1>
+
+        <input class="email" value="Mail" type="email" value="{{ last_username }}" name="_username" id="inputUsername" required autofocus>
+        <input class="email" value="Mot de passe" type="password" name="_password" id="inputPassword" required>
+
+        <button class="btn" type="submit">Connexion</button>
+        
+    </form>
+        <button class="btn2"><a  href="{{ path('user_add') }}">Inscription</a></button>
+    </div> <!-- End Box -->
+    
+{% endapply %}
+{% endblock %}
