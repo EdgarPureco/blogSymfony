@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   {% apply inline_css(source("styles/games.css")) %}
+
+
+<div class="example-wrapper">
+    <h1>Liste des jeux videos</h1>
+    <br>
+
+
+  <div class="panel">
+    <div class="panel-heading" >
+    <h3>Filtrer par</h3>
+    </div>
+    <div class="panel-body"></div>
+
+    <select id="plateforme" name="plateforme">
+      {% for category in categoriesRepository.findAll %}
+        <option value={{ category.name }}>{{ category.name }}</option>
+    {% endfor %}
+    </select>
+
+    <select id="categorie" name="categorie">
+        {% for category in categoriesRepository.findAll %}
+        <option value={{ category.name }}>{{ category.name }}</option>
+    {% endfor %} 
+    </select>
+
+      
+</div>
+  
+
+  </div>
+
+
+  
+</div>
+{% endapply %}
+{% endblock %}

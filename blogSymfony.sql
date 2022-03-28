@@ -221,7 +221,7 @@ INSERT INTO `user` (`id`, `name`, `password`, `mail`, `last_login`, `roles`) VAL
 --
 -- Index pour la table `article`
 --
-ALTER TABLE `article`
+ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_23A0E66A76ED395` (`user_id`),
   ADD KEY `IDX_23A0E6612469DE2` (`category_id`);
@@ -235,7 +235,14 @@ ALTER TABLE `category`
 --
 -- Index pour la table `comment`
 --
-ALTER TABLE `comment`
+ALTER TABLE `games`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_FF232B3112469DE2` (`category_id`);
+
+--
+-- Index pour la table `orders`
+--
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_9474526CA76ED395` (`user_id`);
 
