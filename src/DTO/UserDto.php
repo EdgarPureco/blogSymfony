@@ -18,6 +18,7 @@ class UserDto extends AbstractDto  {
 	#[Assert\NotBlank(groups: ["add"])]
 	public ?string $passwordConfirm = null;
 
+
 	#[Assert\NotBlank]
 	#[Assert\Email]
 	public string $mail;
