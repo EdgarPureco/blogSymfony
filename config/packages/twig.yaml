@@ -3,3 +3,8 @@ twig:
 
     globals:
         categoriesRepository: '@App\Repository\CategoryRepository'
+        plateformesRepository: '@App\Repository\PlateformeRepository'
+        genresRepository: '@App\Repository\GenreRepository'
+        gamesRepository: '@App\Repository\GamesRepository'
+
+

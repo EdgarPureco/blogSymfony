@@ -16,24 +16,43 @@
     <div class="panel-body"></div>
 
     <select id="plateforme" name="plateforme">
-      {% for category in categoriesRepository.findAll %}
-        <option value={{ category.name }}>{{ category.name }}</option>
+      {% for plateforme in plateformesRepository.findAll %}
+        <option value={{ plateforme.name }}>{{ plateforme.name }}</option>
     {% endfor %}
     </select>
 
-    <select id="categorie" name="categorie">
-        {% for category in categoriesRepository.findAll %}
-        <option value={{ category.name }}>{{ category.name }}</option>
+    <select id="genre" name="genre">
+        {% for genre in genresRepository.findAll %}
+        <option value={{ genre.name }}>{{ genre.name }}</option>
     {% endfor %} 
     </select>
+
+     <div>
+    <h1 style="text-align:center">Listing des Produits</h1>
+     <div>
+        {% for game in games %}
+            <div class="card">
+                  <img src="{{ game.photo }}" style="width:100%" />
+                  
+                    <h2>{{ game.title }}</h2>
+                     <p class="price">{{ game.synopsis }} euros</p>
+     
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+    
 
       
 </div>
   
 
   </div>
-
-
   
 </div>
 {% endapply %}
