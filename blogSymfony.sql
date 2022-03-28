@@ -36,17 +36,6 @@ CREATE TABLE IF NOT EXISTS `article` (
   `created` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `article` values 
-(1, 4, 1, "Nouvelle saison Halo Infinite", "La saison 2 de Halo Infinite devrait être lancée le 2 mai 2022, marquant l’arrivée d’une nouvelle campagne et d’un nouveau contenu multijoueur. Alors que le développeur de Halo Infinite, 343 Industries, ne s’est engagé qu’à une fenêtre de lancement lâche « mai 2022 » pour la saison 2, le Battle Pass existant fournit une date de lancement plus ferme. Le Battle Pass, Heroes of Reach, affiche un compte à rebours jusqu’à la fin de la saison 1, doublant également la date de lancement prévue de la saison 2.
-
-Avec les mises à jour de Halo Infinite traditionnellement déployées à 10 h PT / 13 h HE, la saison 2 devrait suivre le même calendrier, en supposant un lancement le 2 mai.
-
-343 Industries avait précédemment annoncé une approche saisonnière du contenu post-lancement, avec un écart de trois mois entre ces versions importantes. Et alors que la saison 2 devait autrefois être lancée début février 2022, le studio a annoncé plus tard un report de trois mois jusqu’en mai.
-
-« Nous avons pris la décision de prolonger la saison 1 pour nous donner plus de temps pour nous assurer que la saison 2 respecte notre barre de haute qualité et ainsi nous pouvons terminer le développement de la saison 2 de manière saine et durable pour notre équipe », a déclaré Joesph Staten, directeur créatif de Halo Infinite. . Le déménagement a vu la saison 1 s’étendre sur six mois, avec plus d’événements introduits pour compenser la durée d’exécution prolongée.","2022-03-28"),
-(2, 6, 1, "Le Warden est là grace à la Snapshot 22w12a", "Depuis le 24 mars dernier, une nouvelle Snapshot est disponible dans Minecraft et il s'agit de la Snapshot 22w12a. Celle-ci permet l'ajout de nouveautés avec principalement l'introduction du Warden, mais aussi les hurleurs Sculk, ainsi qu'un nouvel enchantement et les bateaux-coffre.", "2022-03-27");
--- --------------------------------------------------------
-
 --
 -- Structure de la table `type`
 --
@@ -80,7 +69,8 @@ CREATE TABLE IF NOT EXISTS `game` (
   `year` date NOT NULL,
   `developer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `synopsis` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `plateforme` longtext COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -129,7 +119,7 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type_id` int(11) NOT NULL
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -160,7 +150,7 @@ INSERT INTO `type` (`id`, `name`) VALUES
 -- Déchargement des données de la table `category`
 --
 
-INSERT INTO `category` (`id`, `name`, `type_id`) VALUES
+INSERT INTO `category` (`id`, `name`, `type`) VALUES
 (1, 'Shooters', 1),
 (2, 'Horror', 1),
 (3, 'Survival', 1),
@@ -212,6 +202,16 @@ INSERT INTO `user` (`id`, `name`, `password`, `mail`, `last_login`, `roles`) VAL
 (7, 'User', '$2y$13$bb1Nm2jYlBizkQ0Th7FSPeWWF2NEny6swqyFYrKuCW71l.cebYBJG', 'u@u.fr', NULL, 'ROLE_USER'),
 (8, 'ee', '$2y$13$rMCUsjf8mESVkJK.57/uE.4MkJ352pEs8ReB.dnvIcBVekqCPGYBm', 'e@e.fr', NULL, 'ROLE_USER');
 
+INSERT INTO `article` values 
+(1, 4, 1, "Nouvelle saison Halo Infinite", "La saison 2 de Halo Infinite devrait être lancée le 2 mai 2022, marquant l’arrivée d’une nouvelle campagne et d’un nouveau contenu multijoueur. Alors que le développeur de Halo Infinite, 343 Industries, ne s’est engagé qu’à une fenêtre de lancement lâche « mai 2022 » pour la saison 2, le Battle Pass existant fournit une date de lancement plus ferme. Le Battle Pass, Heroes of Reach, affiche un compte à rebours jusqu’à la fin de la saison 1, doublant également la date de lancement prévue de la saison 2.
+
+Avec les mises à jour de Halo Infinite traditionnellement déployées à 10 h PT / 13 h HE, la saison 2 devrait suivre le même calendrier, en supposant un lancement le 2 mai.
+
+343 Industries avait précédemment annoncé une approche saisonnière du contenu post-lancement, avec un écart de trois mois entre ces versions importantes. Et alors que la saison 2 devait autrefois être lancée début février 2022, le studio a annoncé plus tard un report de trois mois jusqu’en mai.
+
+« Nous avons pris la décision de prolonger la saison 1 pour nous donner plus de temps pour nous assurer que la saison 2 respecte notre barre de haute qualité et ainsi nous pouvons terminer le développement de la saison 2 de manière saine et durable pour notre équipe », a déclaré Joesph Staten, directeur créatif de Halo Infinite. . Le déménagement a vu la saison 1 s’étendre sur six mois, avec plus d’événements introduits pour compenser la durée d’exécution prolongée.","2022-03-28"),
+(2, 6, 1, "Le Warden est là grace à la Snapshot 22w12a", "Depuis le 24 mars dernier, une nouvelle Snapshot est disponible dans Minecraft et il s'agit de la Snapshot 22w12a. Celle-ci permet l'ajout de nouveautés avec principalement l'introduction du Warden, mais aussi les hurleurs Sculk, ainsi qu'un nouvel enchantement et les bateaux-coffre.", "2022-03-27");
+-- --------------------------------------------------------
 
 
 --
@@ -221,7 +221,7 @@ INSERT INTO `user` (`id`, `name`, `password`, `mail`, `last_login`, `roles`) VAL
 --
 -- Index pour la table `article`
 --
-ALTER TABLE `comment`
+ALTER TABLE `article`
   ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_23A0E66A76ED395` (`user_id`),
   ADD KEY `IDX_23A0E6612469DE2` (`category_id`);
@@ -235,14 +235,7 @@ ALTER TABLE `category`
 --
 -- Index pour la table `comment`
 --
-ALTER TABLE `games`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_FF232B3112469DE2` (`category_id`);
-
---
--- Index pour la table `orders`
---
-ALTER TABLE `orders`
+ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_9474526CA76ED395` (`user_id`);
 
