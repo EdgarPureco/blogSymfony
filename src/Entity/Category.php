@@ -124,34 +124,5 @@ class Category extends AbstractEntity
         return $this;
     }
 
-    /**
-     * @return Collection<int, Games>
-     */
-    public function getGames(): Collection
-    {
-        return $this->games;
-    }
-
-    public function addGame(Games $game): self
-    {
-        if (!$this->games->contains($game)) {
-            $this->games[] = $game;
-            $game->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeGame(Games $game): self
-    {
-        if ($this->games->removeElement($game)) {
-            // set the owning side to null (unless already changed)
-            if ($game->getCategory() === $this) {
-                $game->setCategory(null);
-            }
-        }
-
-        return $this;
-    }
 
 }

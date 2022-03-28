@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 28 mars 2022 à 08:46
+-- Généré le : lun. 28 mars 2022 à 12:58
 -- Version du serveur :  5.7.34
 -- Version de PHP : 8.0.8
 
@@ -75,14 +75,71 @@ CREATE TABLE IF NOT EXISTS `comment` (
 DROP TABLE IF EXISTS `game` ;
 CREATE TABLE IF NOT EXISTS `game` (
   `id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `year` date NOT NULL,
   `developer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `synopsis` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+<<<<<<< HEAD
   `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+=======
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `plateforme_id` int(11) DEFAULT NULL,
+  `genre_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `games`
+--
+
+INSERT INTO `games` (`id`, `title`, `year`, `developer`, `synopsis`, `photo`, `plateforme_id`, `genre_id`) VALUES
+(1, 'Dying Light 2 : Stay Human', '2022-02-04', 'Techland', 'Dying Light 2 est un Survival-Horror dans lequel le joueur doit survivre dans un environnement peuplé de zombies. Dans ce nouvel opus, l\'enjeu sera de contrôler notamment des réserves d\'eau et de nourriture afin de maîtriser une cité de survivants. Les choix du joueur ont ainsi une importance capitale dans le déroulement du scénario.\r\n', 'https://image.jeuxvideo.com/medias-sm/163247/1632473272-6800-jaquette-avant.jpg ', 2, 3),
+(2, 'Battlefield 2042', '2021-11-19', 'Dice  Electronic Arts', 'Battlefield 2042 est un jeu de tir à la première personne multijoueur ancré dans un futur dystopique. Deux nations mènent une guerre totale, les Etats-Unis et la Russie. Trois modes de jeux sont proposés : All-Out Warfare (128 joueurs sur PS5/Xbox Series, 64 sur PS4/Xbox One), Hazard Zone et Mode Portal.', 'https://image.jeuxvideo.com/medias-sm/163664/1636636223-8849-jaquette-avant.jpg', 4, 1),
+(3, 'Fifa 22', '2021-10-01', '', 'FIFA 22 est une simulation de football éditée par Electronic Arts. Comme chaque saison, le jeu offre son lot d\'améliorations techniques pour toujours plus de réalisme ainsi que des animations et des comportements toujours plus poussés. Les modes carrière et Ultimate Team disposent également de nouveaux ajouts.', 'https://image.jeuxvideo.com/medias-sm/163154/1631541998-5162-jaquette-avant.jpg', 12, 8),
+(4, 'Légendes Pokémon : Arceus', '2022-01-22', 'Nintendo The Pokémon Company', 'Légendes Pokémon : Arceus tranche avec les précédents opus Pokémon puisqu\'il prend place dans un monde ouvert. Le titre se déroule dans la région de Sinnoh, bien avant sa colonisation par les êtres humains. Le joueur incarnera toujours un dresseur de Pokémon, cette fois-ci chargé de créer le premier Pokédex de Sinnoh.', 'https://image.jeuxvideo.com/medias-sm/163353/1633531106-3464-jaquette-avant.gif', 5, 4),
+(5, 'Elden Ring', '2022-02-25', 'From Software Bandai Namco', 'Elden Ring est le nouveau jeu de From Software. Il s\'agit d\'un RGP/action à la troisième personne qui proposerait un monde ouvert. L ejeu marque la collaboration entre Hidetaka Miyazaki et George R. R. Martin, le créateur de Game of Thrones.', 'https://image.jeuxvideo.com/medias-sm/163301/1633006670-7022-jaquette-avant.jpg', 12, 2),
+(6, 'Martha is Dead', '2022-02-24', '	LKA Wired Productions', 'Aventure à la première personne, Martha is Dead est un thriller psychologique dont l\'intrigue commence en 1944, en Toscane. Le conflit entre l\'Allemagne et les Alliés y fait rage. À travers les yeux d\'une fille d\'un soldat allemand, le joueur découvre le corps d\'une femme noyée : il devra donc partir à la recherche de la vérité entourant le mystérieux décès.', 'https://image.jeuxvideo.com/medias-sm/164545/1645450819-855-jaquette-avant.jpg', 1, 5),
+(7, 'New Super Mario Bros. U Deluxe', '2019-01-11', 'Nintendo', 'New Super Mario Bros. U Deluxe est à la fois une fusion et un portage. Le jeu contient tous les niveaux de New Super Mario Bros. U et New Super Luigi. U emmenés sur Nintendo Switch. Les personnages secondaires ont également été modifiées par rapport au jeu de base, Nabbit et Toadette sont donc les aventuriers bonus de cet épisode.', 'https://image.jeuxvideo.com/medias-sm/154410/1544104487-917-jaquette-avant.jpg', 5, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `genre`
+--
+
+CREATE TABLE `genre` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `genre`
+--
+
+INSERT INTO `genre` (`id`, `name`) VALUES
+(1, 'FPS'),
+(2, 'RPG'),
+(3, 'Survival'),
+(4, 'Action'),
+(5, 'Aventure'),
+(6, 'Plateforme'),
+(7, 'Simulation'),
+(8, 'Sport');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+>>>>>>> dba0abe03bb3557feab3f95adfb37c7763cf1991
 
 -- --------------------------------------------------------
 --
@@ -99,7 +156,40 @@ CREATE TABLE IF NOT EXISTS `order_line` (
 
 
 --
+<<<<<<< HEAD
 -- Structure de la table `orders`
+=======
+-- Structure de la table `plateforme`
+--
+
+CREATE TABLE `plateforme` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `plateforme`
+--
+
+INSERT INTO `plateforme` (`id`, `name`) VALUES
+(1, 'Xbox Series'),
+(2, 'PS5'),
+(3, 'PS4'),
+(4, 'One'),
+(5, 'Switch'),
+(6, 'PC'),
+(7, 'Xbox Series/One'),
+(8, 'PS5/PS4'),
+(9, 'PC/PS5/PS4'),
+(10, 'PC'),
+(11, 'PC/Xbox Series/One'),
+(12, 'PC/Xbox Series/One/PS5/PS4');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `product`
+>>>>>>> dba0abe03bb3557feab3f95adfb37c7763cf1991
 --
 DROP TABLE IF EXISTS `orders` ;
 CREATE TABLE IF NOT EXISTS `orders` (
@@ -251,7 +341,14 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `game`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_FF232B3112469DE2` (`category_id`);
+  ADD KEY `IDX_FF232B31391E226B` (`plateforme_id`),
+  ADD KEY `IDX_FF232B314296D31F` (`genre_id`);
+
+--
+-- Index pour la table `genre`
+--
+ALTER TABLE `genre`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `orders`
@@ -267,6 +364,12 @@ ALTER TABLE `order_line`
   ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_9CE58EE14584665A` (`product_id`),
   ADD KEY `IDX_9CE58EE18D9F6D38` (`order_id`);
+
+--
+-- Index pour la table `plateforme`
+--
+ALTER TABLE `plateforme`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `product`
@@ -306,8 +409,19 @@ ALTER TABLE `comment`
 --
 -- AUTO_INCREMENT pour la table `game`
 --
+<<<<<<< HEAD
 ALTER TABLE `game`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+=======
+ALTER TABLE `games`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT pour la table `genre`
+--
+ALTER TABLE `genre`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+>>>>>>> dba0abe03bb3557feab3f95adfb37c7763cf1991
 
 --
 -- AUTO_INCREMENT pour la table `orders`
@@ -320,6 +434,12 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `order_line`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `plateforme`
+--
+ALTER TABLE `plateforme`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `product`
@@ -353,8 +473,14 @@ ALTER TABLE `comment`
 --
 -- Contraintes pour la table `game`
 --
+<<<<<<< HEAD
 ALTER TABLE `game`
   ADD CONSTRAINT `FK_FF232B3112469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
+=======
+ALTER TABLE `games`
+  ADD CONSTRAINT `FK_FF232B31391E226B` FOREIGN KEY (`plateforme_id`) REFERENCES `plateforme` (`id`),
+  ADD CONSTRAINT `FK_FF232B314296D31F` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`id`);
+>>>>>>> dba0abe03bb3557feab3f95adfb37c7763cf1991
 
 --
 -- Contraintes pour la table `orders`
