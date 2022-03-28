@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 28 mars 2022 à 08:28
+-- Généré le : lun. 28 mars 2022 à 08:37
 -- Version du serveur :  5.7.34
 -- Version de PHP : 8.0.8
 
@@ -84,7 +84,8 @@ CREATE TABLE `games` (
   `category_id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `year` date NOT NULL,
-  `developer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `developer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `synopsis` longtext COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
