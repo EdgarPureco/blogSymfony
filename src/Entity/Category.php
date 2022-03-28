@@ -13,22 +13,35 @@ use Doctrine\ORM\Mapping as ORM;
 class Category extends AbstractEntity
 {
 	#[ORM\Column(type: "string", length: 255, nullable: false)]
-    private string $name;
+                                                    private string $name;
 
 	#[ORM\OneToMany(mappedBy: "category", targetEntity: Product::class)]
-    private Collection $products;
+                                                    private Collection $products;
+
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Article::class)]
+    private $articles;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $type;
+
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Games::class)]
+    private $games;
+
+    
 
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->articles = new ArrayCollection();
+        $this->games = new ArrayCollection();
     }
 
 	/**
 	 * @param CategoryDto $categoryDto
 	 */
 	public function setFromDto(AbstractDto $categoryDto): void {
-		$this->setName($categoryDto->name);
-	}
+                                                		$this->setName($categoryDto->name);
+                                                	}
 
     public function getName(): string
     {
@@ -72,4 +85,77 @@ class Category extends AbstractEntity
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getCategory() === $this) {
+                $article->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Games>
+     */
+    public function getGames(): Collection
+    {
+        return $this->games;
+    }
+
+    public function addGame(Games $game): self
+    {
+        if (!$this->games->contains($game)) {
+            $this->games[] = $game;
+            $game->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGame(Games $game): self
+    {
+        if ($this->games->removeElement($game)) {
+            // set the owning side to null (unless already changed)
+            if ($game->getCategory() === $this) {
+                $game->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
