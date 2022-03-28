@@ -30,19 +30,28 @@
 </div>
 </div>
 
+<br>
+
     <div>
         {% for game in games %}
+            <a href="{{path("app_article")}}">
+
             <div class="card">
-                  <span>
+                <span class="spanphoto">
                    <img src="{{ game.photo }}" style="width:100%" />
                 </span>
                 
-                <span>
+                <span class="spancontenu">
                     <h2>{{ game.title }}</h2>
+                    <br class="brtitre">
                     <h4>{{ game.plateforme }}</h4>
-                     <p>{{ game.synopsis }}</p>
-                </span>
+                    <br>
+                    <p class="paragraphe">{{ game.synopsis }}</p>
+                </span>            
             </div>
+            </a>  
+            <br>
+
         {% endfor %}
     </div>
 

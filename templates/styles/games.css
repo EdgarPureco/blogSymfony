@@ -1,13 +1,11 @@
 .panel{
     width:30%;
     margin: 0 auto 0 auto;
-    padding:0px 0px 70px 0px; 
+    padding:0px 0px 30px 0px; 
     text-align: center;
 }
 
 .option{
-  margin: 0 auto 0 auto;
-  padding:0px 0px 70px 0px; 
   font-size: x-large;
   text-align: center;
 }
@@ -20,13 +18,15 @@ h1{
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   margin: auto;
-  
+  display: flex; 
+  flex-direction: row;
   font-family: arial;
+  width: 60%;
 }
 
-.price {
+.paragraphe {
   color: grey;
-  font-size: 22px;
+  font-size: 16px;
 }
 
 .card button {
@@ -46,9 +46,24 @@ h1{
 }
 
 
-span {
-  float: left;
-  width: 25%;
-  padding: 0 10px;
+.spanphoto {
+ 
+  height: 50%;
+  width: 100%;
+  padding: 5%;
 }
 
+.spancontenu {
+ 
+  height: 50%;
+  width:100%;
+  padding: 5% ;
+}
+
+.brtitre {
+  content: "";
+  margin: 2em;
+  display: block;
+  font-size: 24%;
+  
+}
