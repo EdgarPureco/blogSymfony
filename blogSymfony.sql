@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 28 mars 2022 à 07:09
+-- Généré le : lun. 28 mars 2022 à 08:28
 -- Version du serveur :  5.7.34
 -- Version de PHP : 8.0.8
 
@@ -44,18 +44,21 @@ CREATE TABLE `article` (
 
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `category`
 --
 
-INSERT INTO `category` (`id`, `name`) VALUES
-(1, 'Shooters'),
-(2, 'Horror'),
-(3, 'Survival'),
-(4, 'Goodies');
+INSERT INTO `category` (`id`, `name`, `type`) VALUES
+(1, 'Shooters', 'Jeux'),
+(2, 'Horror', 'Jeux'),
+(3, 'Survival', 'Jeux'),
+(4, 'Goodies', 'Produit'),
+(5, 'Test', 'Article'),
+(6, 'Video', 'Article');
 
 -- --------------------------------------------------------
 
@@ -68,6 +71,20 @@ CREATE TABLE `comment` (
   `user_id` int(11) NOT NULL,
   `text` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `created` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `games`
+--
+
+CREATE TABLE `games` (
+  `id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `year` date NOT NULL,
+  `developer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -123,6 +140,17 @@ INSERT INTO `product` (`id`, `category_id`, `name`, `photo`, `price`, `descripti
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `type`
+--
+
+CREATE TABLE `type` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `user`
 --
 
@@ -144,7 +172,9 @@ INSERT INTO `user` (`id`, `name`, `password`, `mail`, `last_login`, `roles`) VAL
 (2, 'Test', '$argon2id$v=19$m=65536,t=4,p=1$7mqlKgudpOMF4IT20FXhSQ$odV0E+Yk4Wv0tFlLYq8rJ2lWrCH/UkZg+HW5UW217tw', 'test@gmail.com', NULL, 'ROLE_ADMIN'),
 (4, 'Edgar Pureco', '$2y$13$4Q.iTmzp3s2ygFtx1/CEEOWbfRCeWHTWj2A0mJVVd9S7.fCPhJwre', 'edgar@gmail.com', NULL, 'ROLE_ADMIN'),
 (5, 'Edgar Pureco Huerta', '$2y$13$cfJLaHXXKAwLcSbEQeWiXetSTl3trGRTNDNaTAxhHhKP5nxQAvG8K', 'pureco@gmail.com', NULL, 'ROLE_ADMIN'),
-(6, 'Aymane', '$2y$13$L2..flvkm/8STB94xsnFROOj1u2KdVXiUauLZc9kHGFbIjzv33xtW', 'a@a.fr', NULL, 'ROLE_ADMIN');
+(6, 'Aymane', '$2y$13$L2..flvkm/8STB94xsnFROOj1u2KdVXiUauLZc9kHGFbIjzv33xtW', 'a@a.fr', NULL, 'ROLE_ADMIN'),
+(7, 'User', '$2y$13$bb1Nm2jYlBizkQ0Th7FSPeWWF2NEny6swqyFYrKuCW71l.cebYBJG', 'u@u.fr', NULL, 'ROLE_USER'),
+(8, 'ee', '$2y$13$rMCUsjf8mESVkJK.57/uE.4MkJ352pEs8ReB.dnvIcBVekqCPGYBm', 'e@e.fr', NULL, 'ROLE_USER');
 
 --
 -- Index pour les tables déchargées
@@ -170,6 +200,13 @@ ALTER TABLE `category`
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `IDX_9474526CA76ED395` (`user_id`);
+
+--
+-- Index pour la table `games`
+--
+ALTER TABLE `games`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_FF232B3112469DE2` (`category_id`);
 
 --
 -- Index pour la table `orders`
@@ -213,13 +250,19 @@ ALTER TABLE `article`
 -- AUTO_INCREMENT pour la table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT pour la table `games`
+--
+ALTER TABLE `games`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `orders`
@@ -243,7 +286,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Contraintes pour les tables déchargées
@@ -261,6 +304,12 @@ ALTER TABLE `article`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `FK_9474526CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `games`
+--
+ALTER TABLE `games`
+  ADD CONSTRAINT `FK_FF232B3112469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
 
 --
 -- Contraintes pour la table `orders`
