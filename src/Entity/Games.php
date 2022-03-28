@@ -22,18 +22,18 @@ class Games
     #[ORM\Column(type: 'string', length: 255)]
     private $developer;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'games')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $category;
-
     #[ORM\Column(type: 'text')]
     private $synopsis;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $photo;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\ManyToOne(targetEntity: Plateforme::class, inversedBy: 'games')]
     private $plateforme;
+
+    #[ORM\ManyToOne(targetEntity: Genre::class, inversedBy: 'games')]
+    private $genre;
+
 
     public function getId(): ?int
     {
@@ -76,18 +76,6 @@ class Games
         return $this;
     }
 
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getSynopsis(): ?string
     {
         return $this->synopsis;
@@ -112,15 +100,28 @@ class Games
         return $this;
     }
 
-    public function getPlateforme(): ?string
+    public function getPlateforme(): ?Plateforme
     {
         return $this->plateforme;
     }
 
-    public function setPlateforme(string $plateforme): self
+    public function setPlateforme(?Plateforme $plateforme): self
     {
         $this->plateforme = $plateforme;
 
         return $this;
     }
+
+    public function getGenre(): ?Genre
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(?Genre $genre): self
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
 }

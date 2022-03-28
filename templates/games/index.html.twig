@@ -14,17 +14,18 @@
     <h3>Filtrer par</h3>
     </div>
     <div class="panel-body"></div>
-      <select id="plateforme" name="plateforme">
-        <option value="PC">PC</option>
-        <option value="PS5">PS5</option>
-        <option value="Xbox Series">Xbox Series</option>                 
-      </select>
 
-      <select id="categorie" name="categorie">
-        <option value="Shooters">Shooters</option>
-        <option value="Horreur">Horreur</option>
-        <option value="Survival">Survival</option>                 
-      </select>
+    <select id="plateforme" name="plateforme">
+      {% for category in categoriesRepository.findAll %}
+        <option value={{ category.name }}>{{ category.name }}</option>
+    {% endfor %}
+    </select>
+
+    <select id="categorie" name="categorie">
+        {% for category in categoriesRepository.findAll %}
+        <option value={{ category.name }}>{{ category.name }}</option>
+    {% endfor %} 
+    </select>
 
       
 </div>

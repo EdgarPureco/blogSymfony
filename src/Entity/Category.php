@@ -23,11 +23,7 @@ class Category extends AbstractEntity
 
     #[ORM\Column(type: 'string', length: 255)]
     private $type;
-
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Games::class)]
-    private $games;
-
-    
+  
 
     public function __construct()
     {
