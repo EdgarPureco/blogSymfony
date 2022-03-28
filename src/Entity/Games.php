@@ -32,6 +32,9 @@ class Games
     #[ORM\Column(type: 'string', length: 255)]
     private $photo;
 
+    #[ORM\Column(type: 'text')]
+    private $plateforme;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class Games
     public function setPhoto(string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getPlateforme(): ?string
+    {
+        return $this->plateforme;
+    }
+
+    public function setPlateforme(string $plateforme): self
+    {
+        $this->plateforme = $plateforme;
 
         return $this;
     }
