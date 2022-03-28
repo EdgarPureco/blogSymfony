@@ -39,7 +39,7 @@
   
   .btn{
     background:#2ecc71;
-    width:125px;
+    width:120px;
     padding-top:5px;
     padding-bottom:5px;
     color:white;
@@ -49,7 +49,7 @@
     margin-top:20px;
     margin-bottom:20px;
     float:left;
-    margin-left:16px;
+    margin-left:0px;
     font-weight:800;
     font-size:0.8em;
   }
@@ -61,7 +61,7 @@
   .btn2{
     float:left;
     background:#3498db;
-    width:125px;  padding-top:5px;
+    width:120px;  padding-top:5px;
     padding-bottom:5px;
     color:white;
     border-radius:4px;
