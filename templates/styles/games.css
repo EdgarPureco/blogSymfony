@@ -1,9 +1,17 @@
 .panel{
-    width:300px;
+    width:30%;
     margin: 0 auto 0 auto;
     padding:0px 0px 70px 0px; 
     text-align: center;
 }
+
+.option{
+  margin: 0 auto 0 auto;
+  padding:0px 0px 70px 0px; 
+  font-size: x-large;
+  text-align: center;
+}
+
 
 h1{
     text-align: center;
@@ -11,9 +19,8 @@ h1{
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
   margin: auto;
-  text-align: center;
+  
   font-family: arial;
 }
 
@@ -37,3 +44,11 @@ h1{
 .card button:hover {
   opacity: 0.7;
 }
+
+
+span {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
