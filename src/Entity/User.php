@@ -21,13 +21,11 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
 	#[ORM\Column(type: "string", length: 255, nullable: false)]
                                        	private string $password;
 
-
 	#[ORM\Column(type: "string", length: 255, nullable: false)]
                                        	private string $mail;
 
 	#[ORM\Column(type: "string", length: 32, nullable: false)]
 										private string $roles;
-
 
 	#[ORM\Column(type: "datetime", nullable: true)]
                                        	private ?DateTimeInterface $lastLogin = null;

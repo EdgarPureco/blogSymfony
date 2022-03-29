@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `article`
 --
 
-CREATE TABLE `article` (
+CREATE TABLE IF NOT EXISTS `article` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -50,7 +50,7 @@ INSERT INTO `article` (`id`, `user_id`, `category_id`, `title`, `text`, `created
 -- Structure de la table `category`
 --
 
-CREATE TABLE `category` (
+CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
@@ -74,7 +74,7 @@ INSERT INTO `category` (`id`, `name`, `type`) VALUES
 -- Structure de la table `comment`
 --
 
-CREATE TABLE `comment` (
+CREATE TABLE IF NOT EXISTS `comment` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `text` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -87,7 +87,7 @@ CREATE TABLE `comment` (
 -- Structure de la table `games`
 --
 
-CREATE TABLE `games` (
+CREATE TABLE IF NOT EXISTS `games` (
   `id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `year` date NOT NULL,
@@ -118,7 +118,7 @@ INSERT INTO `games` (`id`, `title`, `year`, `developer`, `synopsis`, `photo`, `p
 -- Structure de la table `genre`
 --
 
-CREATE TABLE `genre` (
+CREATE TABLE IF NOT EXISTS `genre` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -143,7 +143,7 @@ INSERT INTO `genre` (`id`, `name`) VALUES
 -- Structure de la table `orders`
 --
 
-CREATE TABLE `orders` (
+CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `date` datetime NOT NULL,
@@ -156,7 +156,7 @@ CREATE TABLE `orders` (
 -- Structure de la table `order_line`
 --
 
-CREATE TABLE `order_line` (
+CREATE TABLE IF NOT EXISTS `order_line` (
   `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -170,7 +170,7 @@ CREATE TABLE `order_line` (
 -- Structure de la table `plateforme`
 --
 
-CREATE TABLE `plateforme` (
+CREATE TABLE IF NOT EXISTS `plateforme` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -199,7 +199,7 @@ INSERT INTO `plateforme` (`id`, `name`) VALUES
 -- Structure de la table `product`
 --
 
-CREATE TABLE `product` (
+CREATE TABLE IF NOT EXISTS `product` (
   `id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -222,7 +222,7 @@ INSERT INTO `product` (`id`, `category_id`, `name`, `photo`, `price`, `descripti
 -- Structure de la table `type`
 --
 
-CREATE TABLE `type` (
+CREATE TABLE IF NOT EXISTS `type` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -233,7 +233,7 @@ CREATE TABLE `type` (
 -- Structure de la table `user`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
