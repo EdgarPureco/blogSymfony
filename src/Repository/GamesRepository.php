@@ -45,22 +45,33 @@ class GamesRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Games[] Returns an array of Games objects
-    //  */
-    /*
-    public function findByExampleField($value)
+  
+    public function findByPLateforme($value)
     {
-        return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
+        return $this->createQueryBuilder('games')
+            ->andWhere('p.name = :val')
+            ->leftJoin('games.plateforme','p')
             ->setParameter('val', $value)
-            ->orderBy('g.id', 'ASC')
+            ->orderBy('games.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
+    public function findByGenre($value)
+    {
+        return $this->createQueryBuilder('games')
+            ->andWhere('g.name = :val')
+            ->leftJoin('games.genre','g')
+            ->setParameter('val', $value)
+            ->orderBy('games.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
 
     /*
     public function findOneBySomeField($value): ?Games
