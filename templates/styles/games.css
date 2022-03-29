@@ -1,5 +1,5 @@
 .panel{
-    width:300px;
+    width:25%;
     margin: 0 auto 0 auto;
     padding:0px 0px 70px 0px; 
     text-align: center;
@@ -36,4 +36,10 @@ h1{
 
 .card button:hover {
   opacity: 0.7;
+}
+
+.filtre{
+  width: 25%;
+  padding: 5px;
+  font-size: 1.5em;
 }
