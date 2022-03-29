@@ -5,9 +5,7 @@
 {% block body %}
    {% apply inline_css(source("styles/games.css")) %}
 
-<form>
- <input type="button" value="Go back!" onclick="history.back()">
-</form>
+
 
 <div class="panel">
     <h1>{{game.title}}</h1>
@@ -15,15 +13,16 @@
     <h3>{{game.plateforme}}</h3>
     </div>
 </div>
-
-  <div class="card">
-
-                <span class="spanphoto">
-                Bande annonce : 
-                <br>
-                <iframe  width="420" height="315" src="{{game.video}}" allowfullscreen="" frameborder="0"></iframe>
+<br>
+  <div class="card" id="content" >
+               <span class="spanphoto">
+               <img src="{{ game.photo }}"/>
                 <br class="brtitre">
-                <button><a  href="{{ path('games_video') }}">Vidéo test  <i class="fa fa-play-circle"></i> </button>
+                <button> <a href="#trailer">Vidéo Trailer  <i class="fa fa-play-circle"></i> </button>
+                <br class="brtitre">
+                <button> <a href="#images">Images  <i class="fa fa-image"></i> </button>
+                <br class="brtitre">
+                <button> <a href="#actus">Actus  <i class="fas fa-newspaper"></i> </button>
                 </span>
                 
                 <span class="spancontenu">
@@ -43,5 +42,34 @@
                 </span> 
             </div>
 
+    <br>
+
+    <div class="video" id="trailer" >
+      <iframe src="{{game.video}}" allowfullscreen="" frameborder="0"></iframe>
+    </div>
+
+    <br class=brtitre">
+    <div class="card" id="images" >
+      <span class="spancontenu">
+     <h1>ICI QUELQUES IMAGES</h1>
+      </span>
+    </div>
+    <br class=brtitre">
+     <div class="card" id="actus" >
+     <span class="spancontenu">
+     <h1>ICI LES ACTUS ET LES ARTICLES LIÉES</h1>
+      </span>
+    </div>
+
+    <br class="brtitre">
+    <br class="brtitre">
+  <div class="card" >
+    <button class="buttonback"> <a href="#">Haut  <i class="fa fa-play-circle"></i> </button>
+  </div>
+
+
+ <div class="card" >
+    <button class="buttonback"> <a href="{{ path('games_index')}}">Retour à la liste<i class="fa fa-play-circle"></i> </button>
+  </div> 
 {% endapply %}
 {% endblock %}

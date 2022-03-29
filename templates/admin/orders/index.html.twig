@@ -1,15 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des commandes{% endblock %}
-
 {% block body %}
-    {% if orders is not empty %}
-        <ul>
-            {% for order in orders | reverse %}
-                <li><a href="{{ path('orders_get', {'id': order.id }) }}">#{{ order.id }} le {{ order.date | date("m/d/Y H:i", "Europe/Paris") }} - {{ order.total | format_currency('EUR', locale = 'fr') }}</a></li>
-            {% endfor %}
-        </ul>
+{% apply inline_css(source("styles/login.css")) %}
+<div class="box" style="font-size: 1.5rem;">
+        <h1>Liste des commandes</h1>
+    <div class="container" >
+  {% if orders is not empty %}
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">N°</th>
+      <th scope="col">Date</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders | reverse %}
+    <a href="{{ path('orders_get', {'id': order.id }) }}"><tr>
+      <td>{{ order.id }} </td>
+      <td>{{ order.date | date("m/d/Y H:i", "Europe/Paris") }}</td>
+      <td>{{ order.total | format_currency('EUR', locale = 'fr') }}</td>
+    </tr></a>
+    {% endfor %}
+  </tbody>
+</table>
     {% else %}
         Aucune commande
     {% endif %}
+    </div>
+    </div> <!-- End Box -->
+    {% endapply %}
 {% endblock %}
