@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+   {% apply inline_css(source("styles/games.css")) %}
+
+<form>
+ <input type="button" value="Go back!" onclick="history.back()">
+</form>
+
+<div class="panel">
+    <h1>{{game.title}}</h1>
+    <br class="brtitre">
+    <h3>{{game.plateforme}}</h3>
+    </div>
+</div>
+
+  <div class="card">
+
+                <span class="spanphoto">
+                   <img src="{{ game.photo }}" style="width:100%" />
+                </span>
+                
+                <span class="spancontenu">
+                    <p class="paragraphe">{{ game.synopsis }}</p>
+                    <button class="button1">Voir la vidéo test</button>
+                </span> 
+               
+
+
+            </div>
+
+{% endapply %}
+{% endblock %}

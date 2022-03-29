@@ -61,17 +61,53 @@
 </div>
 
 
+    <select class="option" id="plateforme" name="plateforme">
+      {% for plateforme in plateformesRepository.findAll %}
+        <option class="option" value={{ plateforme.name }}>{{ plateforme.name }}</option>
+    {% endfor %}
+    </select>
 
+    <select class="option" id="genre" name="genre">
+        {% for genre in genresRepository.findAll %}
+        <option class="option" value={{ genre.name }}>{{ genre.name }}</option>
+    {% endfor %} 
+    </select>     
+</div>
+</div>
+</div>
 
+<br>
 
-    
+     <a href="{{path("games_plateforme")}}">Cherche par plateforme</a>    
+     <a href="{{path("games_genre")}}">Cherche par genre</a>     
 
+    <div>
+        {% for game in games %}
+            <a href="{{ path('games_get', { id: game.id}) }}">
+
+            <div class="card">
+                <span class="spanphoto">
+                   <img src="{{ game.photo }}" style="width:100%" />
+                </span>
+                
+                <span class="spancontenu">
+                    <h2>{{ game.title }}</h2>
+                    <br class="brtitre">
+                    <h4>{{ game.plateforme }}</h4>
+                    <br>
+                    <p class="paragraphe">{{ game.synopsis }}</p>
+                </span>            
+            </div>
+            </a>  
+            <br>
+
+        {% endfor %}
+    </div>
+
+     
       
-</div>
-  
 
-  </div>
-  
-</div>
+
+
 {% endapply %}
 {% endblock %}
