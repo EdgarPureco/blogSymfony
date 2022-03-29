@@ -44,25 +44,10 @@
   </div>
 </nav>
     </div>
-    <div class="panel-body"></div>
 
-    <select class="option" id="plateforme" name="plateforme">
-      {% for plateforme in plateformesRepository.findAll %}
-        <option class="option" value={{ plateforme.name }}>{{ plateforme.name }}</option>
-    {% endfor %}
-    </select>
-
-    <select class="option" id="genre" name="genre">
-        {% for genre in genresRepository.findAll %}
-        <option class="option" value={{ genre.name }}>{{ genre.name }}</option>
-    {% endfor %} 
-    </select>     
 </div>
 </div>
 </div>
-
-<br>
-
      <a href="{{path("games_plateforme")}}">Cherche par plateforme</a>    
      <a href="{{path("games_genre")}}">Cherche par genre</a>     
 
@@ -72,14 +57,13 @@
 
             <div class="card">
                 <span class="spanphoto">
-                   <img src="{{ game.photo }}" style="width:100%" />
+                   <img src="{{ game.photo }}" style="width:180%" />
                 </span>
                 
                 <span class="spancontenu">
                     <h2>{{ game.title }}</h2>
-                    <br class="brtitre">
                     <h4>{{ game.plateforme }}</h4>
-                    <br>
+                    <br class="brtitre">
                     <p class="paragraphe">{{ game.synopsis }}</p>
                 </span>            
             </div>

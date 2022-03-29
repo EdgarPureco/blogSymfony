@@ -34,6 +34,9 @@ class Games
     #[ORM\ManyToOne(targetEntity: Genre::class, inversedBy: 'games')]
     private $genre;
 
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $video;
+
 
     public function getId(): ?int
     {
@@ -120,6 +123,18 @@ class Games
     public function setGenre(?Genre $genre): self
     {
         $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getVideo(): ?string
+    {
+        return $this->video;
+    }
+
+    public function setVideo(?string $video): self
+    {
+        $this->video = $video;
 
         return $this;
     }
