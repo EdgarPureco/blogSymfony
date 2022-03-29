@@ -1,10 +1,13 @@
-<div style="display: flex; flex-direction: column; margin: 8px">
-    <a href="{{ path('products_get', { id: product.id}) }}">
+<div class="card" style="width: 18rem; padding: 10px; margin: 10px; ">
+<a href="{{ path('products_get', { id: product.id}) }}">
         {% if product.photo is not null %}
-            <img src="/{{ product.photo }}" alt="Image pour {{ product.name }}" />
+            <img class="card-img-top" src="/{{ product.photo }}" alt="Image pour {{ product.name }}" />
         {% else %}
-            <img src="/assets/no_image.jpg" alt="Aucune image pour {{ product.name }}" />
+            <img class="card-img-top" src="/assets/no_image.jpg" alt="Aucune image pour {{ product.name }}" />
         {% endif %}
-    </a>
-    <a href="{{ path('products_get', { id: product.id}) }}"><b>{{ product.name }}</b></a>
+    <br>
+  <div class="card-body d-flex justify-content-center">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <br></a>
+  </div>
 </div>
