@@ -44,34 +44,7 @@
   </div>
 </nav>
     </div>
-    <div class="panel-body"></div>
-     <div>
-    <h1 style="text-align:center">Listing des Produits</h1>
-     <div>
-        {% for game in games %}
-            <div class="card">
-                  <img src="{{ game.photo }}" style="width:100%" />
-                  
-                    <h2>{{ game.title }}</h2>
-                     <p class="price">{{ game.synopsis }} euros</p>
-     
-            </div>
-        {% endfor %}
-    </div>
-</div>
-
-
-    <select class="option" id="plateforme" name="plateforme">
-      {% for plateforme in plateformesRepository.findAll %}
-        <option class="option" value={{ plateforme.name }}>{{ plateforme.name }}</option>
-    {% endfor %}
-    </select>
-
-    <select class="option" id="genre" name="genre">
-        {% for genre in genresRepository.findAll %}
-        <option class="option" value={{ genre.name }}>{{ genre.name }}</option>
-    {% endfor %} 
-    </select>     
+   
 </div>
 </div>
 </div>
