@@ -67,3 +67,15 @@ h1{
   font-size: 24%;
   
 }
+
+.button1 {
+  background: darkorange;
+  background-color:darkorange;
+  color: darkorange;
+  width: 250px;} /* Green */
+
+  .filtre{
+    width: 25%;
+    padding: 5px;
+    font-size: 1.5em;
+  }

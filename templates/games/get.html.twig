@@ -3,23 +3,33 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-{% apply inline_css(source("styles/base.css")) %}
-<div class="box">
-<h1>{{ game.name }} #{{ game.id }}</h1>
-    <p>Dans la catégorie <a href="{{ path('categories_get_products', { id: product.category.id}) }}">{{ product.category.name }}</a></p>
+   {% apply inline_css(source("styles/games.css")) %}
 
-    <pre>{{ product.description }}</pre>
+<form>
+ <input type="button" value="Go back!" onclick="history.back()">
+</form>
 
-    <div>Prix : {{ product.price | format_currency('EUR', locale = 'fr') }}</div>
-
-    {% if product.photo is not null %}
-        <img src="/{{ product.photo }}" alt="Image pour {{ product.name }}" />
-    {% else %}
-        <img src="/assets/no_image.jpg" alt="Aucune image pour {{ product.name }}" />
-    {% endif %}
-
- 
+<div class="panel">
+    <h1>{{game.title}}</h1>
+    <br class="brtitre">
+    <h3>{{game.plateforme}}</h3>
     </div>
-    {% endapply %}
+</div>
 
+  <div class="card">
+
+                <span class="spanphoto">
+                   <img src="{{ game.photo }}" style="width:100%" />
+                </span>
+                
+                <span class="spancontenu">
+                    <p class="paragraphe">{{ game.synopsis }}</p>
+                    <button class="button1">Voir la vidéo test</button>
+                </span> 
+               
+
+
+            </div>
+
+{% endapply %}
 {% endblock %}

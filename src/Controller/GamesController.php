@@ -29,10 +29,33 @@ class GamesController extends AbstractController
         ]);
     }
 
+   
+
+    #[Route("/genre", name: "games_genre", methods: ["GET"])]
+	public function getByGenre(): Response {
+		return $this->render('games/index.html.twig', [
+            'games' => $this->gamesRepository->findByGenre("FPS")
+        ]);
+	}
+
+    #[Route("/plateforme", name: "games_plateforme", methods: ["GET"])]
+	public function getByPlateforme(): Response {
+		return $this->render('games/index.html.twig', [
+            'games' => $this->gamesRepository->findByPLateforme("PS5")
+        ]);
+	}
+
+
     #[Route("/{id}", name: "games_get", methods: ["GET"])]
 	public function getById(Games $game): Response {
 		return $this->render('games/get.html.twig', [
 			'game' => $game
 		]);
 	}
+
+
+
+
+
+
 }

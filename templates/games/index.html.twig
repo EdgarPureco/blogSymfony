@@ -11,7 +11,38 @@
 
   <div class="panel">
     <div class="panel-heading" >
-    <h3>Filtrer par</h3>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <h3>Filtrer par :</h3>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle filtre" style="color: black;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Jeux
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% for plateforme in plateformesRepository.findAll %}
+              <li><a class="dropdown-item" href="#">{{ plateforme.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle filtre" style="color: black;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Genre
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% for genre in genresRepository.findAll %}
+              <li><a class="dropdown-item" href="#">{{ genre.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
     </div>
     <div class="panel-body"></div>
 
@@ -32,9 +63,12 @@
 
 <br>
 
+     <a href="{{path("games_plateforme")}}">Cherche par plateforme</a>    
+     <a href="{{path("games_genre")}}">Cherche par genre</a>     
+
     <div>
         {% for game in games %}
-            <a href="{{path("app_article")}}">
+            <a href="{{ path('games_get', { id: game.id}) }}">
 
             <div class="card">
                 <span class="spanphoto">
@@ -54,6 +88,9 @@
 
         {% endfor %}
     </div>
+
+     
+      
 
 
 
