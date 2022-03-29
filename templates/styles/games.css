@@ -28,16 +28,21 @@ h1{
   color: grey;
   font-size: 16px;
 }
-
+span {
+  color: grey;
+  flex-direction: column;
+  font-size: 16px;
+}
 .card button {
   border: none;
   outline: 0;
-  padding: 12px;
   color: white;
-  background-color: #000;
+  background-color: darkorange;
   text-align: center;
+  padding: 2%;
   cursor: pointer;
   width: 100%;
+  height: 5%;
   font-size: 18px;
 }
 
@@ -47,14 +52,13 @@ h1{
 
 
 .spanphoto {
- 
   height: 50%;
   width: 100%;
   padding: 5%;
 }
 
 .spancontenu {
- 
+  color: black;
   height: 50%;
   width:100%;
   padding: 5% ;
@@ -68,14 +72,9 @@ h1{
   
 }
 
-.button1 {
-  background: darkorange;
-  background-color:darkorange;
-  color: darkorange;
-  width: 250px;} /* Green */
-
   .filtre{
     width: 25%;
-    padding: 5px;
+    padding: 10px;
     font-size: 1.5em;
+    
   }
