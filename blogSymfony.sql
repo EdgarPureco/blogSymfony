@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 28 mars 2022 à 12:58
+-- Généré le : mar. 29 mars 2022 à 10:10
 -- Version du serveur :  5.7.34
 -- Version de PHP : 8.0.8
 
@@ -35,6 +35,14 @@ CREATE TABLE IF NOT EXISTS `article` (
   `text` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `created` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `article`
+--
+
+INSERT INTO `article` (`id`, `user_id`, `category_id`, `title`, `text`, `created`) VALUES
+(1, 4, 1, 'Nouvelle saison Halo Infinite', 'La saison 2 de Halo Infinite devrait être lancée le 2 mai 2022, marquant l’arrivée d’une nouvelle campagne et d’un nouveau contenu multijoueur. Alors que le développeur de Halo Infinite, 343 Industries, ne s’est engagé qu’à une fenêtre de lancement lâche « mai 2022 » pour la saison 2, le Battle Pass existant fournit une date de lancement plus ferme. Le Battle Pass, Heroes of Reach, affiche un compte à rebours jusqu’à la fin de la saison 1, doublant également la date de lancement prévue de la saison 2.\r\n\r\nAvec les mises à jour de Halo Infinite traditionnellement déployées à 10 h PT / 13 h HE, la saison 2 devrait suivre le même calendrier, en supposant un lancement le 2 mai.\r\n\r\n343 Industries avait précédemment annoncé une approche saisonnière du contenu post-lancement, avec un écart de trois mois entre ces versions importantes. Et alors que la saison 2 devait autrefois être lancée début février 2022, le studio a annoncé plus tard un report de trois mois jusqu’en mai.\r\n\r\n« Nous avons pris la décision de prolonger la saison 1 pour nous donner plus de temps pour nous assurer que la saison 2 respecte notre barre de haute qualité et ainsi nous pouvons terminer le développement de la saison 2 de manière saine et durable pour notre équipe », a déclaré Joesph Staten, directeur créatif de Halo Infinite. . Le déménagement a vu la saison 1 s’étendre sur six mois, avec plus d’événements introduits pour compenser la durée d’exécution prolongée.', '2022-03-28 00:00:00'),
+(2, 6, 1, 'Le Warden est là grace à la Snapshot 22w12a', 'Depuis le 24 mars dernier, une nouvelle Snapshot est disponible dans Minecraft et il s\'agit de la Snapshot 22w12a. Celle-ci permet l\'ajout de nouveautés avec principalement l\'introduction du Warden, mais aussi les hurleurs Sculk, ainsi qu\'un nouvel enchantement et les bateaux-coffre.', '2022-03-27 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -87,21 +95,22 @@ CREATE TABLE IF NOT EXISTS `games` (
   `synopsis` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `plateforme_id` int(11) DEFAULT NULL,
-  `genre_id` int(11) DEFAULT NULL
+  `genre_id` int(11) DEFAULT NULL,
+  `video` longtext COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `games`
 --
 
-INSERT INTO `games` (`id`, `title`, `year`, `developer`, `synopsis`, `photo`, `plateforme_id`, `genre_id`) VALUES
-(1, 'Dying Light 2 : Stay Human', '2022-02-04', 'Techland', 'Dying Light 2 est un Survival-Horror dans lequel le joueur doit survivre dans un environnement peuplé de zombies. Dans ce nouvel opus, l\'enjeu sera de contrôler notamment des réserves d\'eau et de nourriture afin de maîtriser une cité de survivants. Les choix du joueur ont ainsi une importance capitale dans le déroulement du scénario.\r\n', 'https://image.jeuxvideo.com/medias-sm/163247/1632473272-6800-jaquette-avant.jpg ', 2, 3),
-(2, 'Battlefield 2042', '2021-11-19', 'Dice  Electronic Arts', 'Battlefield 2042 est un jeu de tir à la première personne multijoueur ancré dans un futur dystopique. Deux nations mènent une guerre totale, les Etats-Unis et la Russie. Trois modes de jeux sont proposés : All-Out Warfare (128 joueurs sur PS5/Xbox Series, 64 sur PS4/Xbox One), Hazard Zone et Mode Portal.', 'https://image.jeuxvideo.com/medias-sm/163664/1636636223-8849-jaquette-avant.jpg', 4, 1),
-(3, 'Fifa 22', '2021-10-01', '', 'FIFA 22 est une simulation de football éditée par Electronic Arts. Comme chaque saison, le jeu offre son lot d\'améliorations techniques pour toujours plus de réalisme ainsi que des animations et des comportements toujours plus poussés. Les modes carrière et Ultimate Team disposent également de nouveaux ajouts.', 'https://image.jeuxvideo.com/medias-sm/163154/1631541998-5162-jaquette-avant.jpg', 12, 8),
-(4, 'Légendes Pokémon : Arceus', '2022-01-22', 'Nintendo The Pokémon Company', 'Légendes Pokémon : Arceus tranche avec les précédents opus Pokémon puisqu\'il prend place dans un monde ouvert. Le titre se déroule dans la région de Sinnoh, bien avant sa colonisation par les êtres humains. Le joueur incarnera toujours un dresseur de Pokémon, cette fois-ci chargé de créer le premier Pokédex de Sinnoh.', 'https://image.jeuxvideo.com/medias-sm/163353/1633531106-3464-jaquette-avant.gif', 5, 4),
-(5, 'Elden Ring', '2022-02-25', 'From Software Bandai Namco', 'Elden Ring est le nouveau jeu de From Software. Il s\'agit d\'un RGP/action à la troisième personne qui proposerait un monde ouvert. L ejeu marque la collaboration entre Hidetaka Miyazaki et George R. R. Martin, le créateur de Game of Thrones.', 'https://image.jeuxvideo.com/medias-sm/163301/1633006670-7022-jaquette-avant.jpg', 12, 2),
-(6, 'Martha is Dead', '2022-02-24', '	LKA Wired Productions', 'Aventure à la première personne, Martha is Dead est un thriller psychologique dont l\'intrigue commence en 1944, en Toscane. Le conflit entre l\'Allemagne et les Alliés y fait rage. À travers les yeux d\'une fille d\'un soldat allemand, le joueur découvre le corps d\'une femme noyée : il devra donc partir à la recherche de la vérité entourant le mystérieux décès.', 'https://image.jeuxvideo.com/medias-sm/164545/1645450819-855-jaquette-avant.jpg', 1, 5),
-(7, 'New Super Mario Bros. U Deluxe', '2019-01-11', 'Nintendo', 'New Super Mario Bros. U Deluxe est à la fois une fusion et un portage. Le jeu contient tous les niveaux de New Super Mario Bros. U et New Super Luigi. U emmenés sur Nintendo Switch. Les personnages secondaires ont également été modifiées par rapport au jeu de base, Nabbit et Toadette sont donc les aventuriers bonus de cet épisode.', 'https://image.jeuxvideo.com/medias-sm/154410/1544104487-917-jaquette-avant.jpg', 5, 6);
+INSERT INTO `games` (`id`, `title`, `year`, `developer`, `synopsis`, `photo`, `plateforme_id`, `genre_id`, `video`) VALUES
+(1, 'Evil Dead : The Game', '2022-05-13', '', 'Inspiré de la franchise emblématique Evil Dead, Evil Dead : The Game est un jeu d\'horreur qui se joue en multijoueur (coop ou JcJ). Vous pouvez y incarner Ash Williams ou l\'un des ses acolytes pour former des équipes de quatre survivants. Votre but ? Trouver de quoi sceller la faille entre les mondes sans vous faire rattraper par vos plus grandes peurs.', 'https://image.jeuxvideo.com/medias-sm/164062/1640616462-1614-jaquette-avant.gif', 2, 3, 'https://www.youtube.com/embed/37j_Lu_9iNs'),
+(2, 'Battlefield 2042', '2021-11-19', 'Dice  Electronic Arts', 'Battlefield 2042 est un jeu de tir à la première personne multijoueur ancré dans un futur dystopique. Deux nations mènent une guerre totale, les Etats-Unis et la Russie. Trois modes de jeux sont proposés : All-Out Warfare (128 joueurs sur PS5/Xbox Series, 64 sur PS4/Xbox One), Hazard Zone et Mode Portal.', 'https://image.jeuxvideo.com/medias-sm/163664/1636636223-8849-jaquette-avant.jpg', 4, 1, 'https://www.youtube.com/embed/nkTplFoXFlY'),
+(3, 'Fifa 22', '2021-10-01', '', 'FIFA 22 est une simulation de football éditée par Electronic Arts. Comme chaque saison, le jeu offre son lot d\'améliorations techniques pour toujours plus de réalisme ainsi que des animations et des comportements toujours plus poussés. Les modes carrière et Ultimate Team disposent également de nouveaux ajouts.', 'https://image.jeuxvideo.com/medias-sm/163154/1631541998-5162-jaquette-avant.jpg', 12, 8, 'https://www.youtube.com/embed/vLj-27T-SEQ'),
+(4, 'Légendes Pokémon : Arceus', '2022-01-22', 'Nintendo The Pokémon Company', 'Légendes Pokémon : Arceus tranche avec les précédents opus Pokémon puisqu\'il prend place dans un monde ouvert. Le titre se déroule dans la région de Sinnoh, bien avant sa colonisation par les êtres humains. Le joueur incarnera toujours un dresseur de Pokémon, cette fois-ci chargé de créer le premier Pokédex de Sinnoh.', 'https://image.jeuxvideo.com/medias-sm/163353/1633531106-3464-jaquette-avant.gif', 5, 4, 'https://www.youtube.com/embed/ALjqD5SLuHo'),
+(5, 'Elden Ring', '2022-02-25', 'From Software Bandai Namco', 'Elden Ring est le nouveau jeu de From Software. Il s\'agit d\'un RGP/action à la troisième personne qui proposerait un monde ouvert. L ejeu marque la collaboration entre Hidetaka Miyazaki et George R. R. Martin, le créateur de Game of Thrones.', 'https://image.jeuxvideo.com/medias-sm/163301/1633006670-7022-jaquette-avant.jpg', 12, 2, 'https://www.youtube.com/embed/M2EZDQ6_jfA'),
+(6, 'Martha is Dead', '2022-02-24', '	LKA Wired Productions', 'Aventure à la première personne, Martha is Dead est un thriller psychologique dont l\'intrigue commence en 1944, en Toscane. Le conflit entre l\'Allemagne et les Alliés y fait rage. À travers les yeux d\'une fille d\'un soldat allemand, le joueur découvre le corps d\'une femme noyée : il devra donc partir à la recherche de la vérité entourant le mystérieux décès.', 'https://image.jeuxvideo.com/medias-sm/164545/1645450819-855-jaquette-avant.jpg', 1, 5, 'https://www.youtube.com/embed/bND7zF7z548'),
+(7, 'New Super Mario Bros. U Deluxe', '2019-01-11', 'Nintendo', 'New Super Mario Bros. U Deluxe est à la fois une fusion et un portage. Le jeu contient tous les niveaux de New Super Mario Bros. U et New Super Luigi. U emmenés sur Nintendo Switch. Les personnages secondaires ont également été modifiées par rapport au jeu de base, Nabbit et Toadette sont donc les aventuriers bonus de cet épisode.', 'https://image.jeuxvideo.com/medias-sm/154410/1544104487-917-jaquette-avant.jpg', 5, 6, 'https://www.youtube.com/embed/zTA5MKKZXx0');
 
 -- --------------------------------------------------------
 
@@ -121,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `genre` (
 INSERT INTO `genre` (`id`, `name`) VALUES
 (1, 'FPS'),
 (2, 'RPG'),
-(3, 'Survival'),
+(3, 'Survival-Horreur'),
 (4, 'Action'),
 (5, 'Aventure'),
 (6, 'Plateforme'),

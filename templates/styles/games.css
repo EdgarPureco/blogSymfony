@@ -1,8 +1,8 @@
 .panel{
     width:30%;
     margin: 0 auto 0 auto;
-    padding:0px 0px 30px 0px; 
     text-align: center;
+    margin: auto;
 }
 
 .option{
@@ -24,38 +24,53 @@ h1{
   width: 60%;
 }
 
+.video{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: auto;
+  align-content: center;
+  font-family: arial;
+  width: 60%;
+  height: 60%;
+}
+
 .paragraphe {
   color: grey;
   font-size: 1.5rem;
 }
-
+span {
+  color: grey;
+  flex-direction: column;
+  font-size: 27px;
+}
 .card button {
+  align-items: center;
   border: none;
   outline: 0;
-  padding: 12px;
   color: white;
-  background-color: #000;
-  text-align: center;
+  background-color: darkorange;
   cursor: pointer;
   width: 100%;
-  font-size: 18px;
+  height: 10%;
+  font-size: 19px;
 }
 
 .card button:hover {
   opacity: 0.7;
-}
+} 
 
 .spanphoto {
- 
-  height: 50%;
-  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
   padding: 5%;
 }
 
 .spancontenu {
- 
-  height: 50%;
-  width:100%;
+  color: black;
+  height: auto;
+  font-size: 25px;
+  max-width:100%;
+  max-height:100%;
+  margin: auto;
   padding: 5% ;
 }
 
@@ -67,14 +82,32 @@ h1{
   
 }
 
-.button1 {
-  background: darkorange;
-  background-color:darkorange;
-  color: darkorange;
-  width: 250px;} /* Green */
-
   .filtre{
     width: 25%;
-    padding: 5px;
+    padding: 10px;
     font-size: 1.5em;
+    margin: auto;
+    
   }
+
+
+  a{
+    color:white
+    }
+
+    .buttonback {
+      border: none;
+      outline: 0;
+      color: white;
+      background-color: darkorange;
+      cursor: pointer;
+      width: 15%;
+      height: 15%;
+      font-size: 19px;
+      margin: auto;
+    }
+
+    iframe{
+      width:100%;
+      height:100%;
+    }

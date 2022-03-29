@@ -21,7 +21,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle filtre" style="color: black;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Jeux
+            Plateforme
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             {% for plateforme in plateformesRepository.findAll %}
@@ -44,13 +44,9 @@
   </div>
 </nav>
     </div>
-   
 </div>
 </div>
 </div>
-
-<br>
-
      <a href="{{path("games_plateforme")}}">Cherche par plateforme</a>    
      <a href="{{path("games_genre")}}">Cherche par genre</a>     
 
@@ -60,14 +56,13 @@
 
             <div class="card">
                 <span class="spanphoto">
-                   <img src="{{ game.photo }}" style="width:100%" />
+                   <img src="{{ game.photo }}" style="width:180%" />
                 </span>
                 
                 <span class="spancontenu">
                     <h2>{{ game.title }}</h2>
-                    <br class="brtitre">
                     <h4>{{ game.plateforme }}</h4>
-                    <br>
+                    <br class="brtitre">
                     <p class="paragraphe">{{ game.synopsis }}</p>
                 </span>            
             </div>
