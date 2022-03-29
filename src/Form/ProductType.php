@@ -27,14 +27,17 @@ class ProductType extends AbstractType {
 	public function buildForm(FormBuilderInterface $builder, array $options) {
 		$builder
 			->add('name', TextType::class, [
-				'label' => 'Nom'
+				'label' => 'Nom',
+				'attr' => ['class' => 'email']
 			])
 			->add('description', TextareaType::class, [
-				'label' => 'Description'
+				'label' => 'Description',
+				'attr' => ['class' => 'email']
 			])
 			->add('price', NumberType::class, [
 				'html5' => true,
 				'attr' => [
+					'class' => 'email',
 					'min' => 0.01,
 					'step' => 0.01,
 				],
@@ -44,7 +47,8 @@ class ProductType extends AbstractType {
 				'class' => Category::class,
 				'choices' => $this->entityManager->getRepository(Category::class)->findAll(),
 				'choice_label' => 'name',
-				'label' => 'Catégorie'
+				'label' => 'Catégorie',
+				'attr' => ['class' => 'email']
 			])
 			->add('photo', FileType::class, [
 				'label' => 'Photo',
