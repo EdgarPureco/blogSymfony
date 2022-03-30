@@ -11,18 +11,12 @@
 
 <div>
         {% for article in articles %}
-        <div style="
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
-        margin: auto;
-        display: flex; 
-        flex-direction: row;
-        font-family: arial;
-        width: 100%;">
+        <div class="card">
                 <span class="spancontenu">
                     <h2><b>{{article.title}}</b></h2>
                     <br class="brtitre">
                     <h4 class="paragraphe">Crée le: {{ article.created|date('d-m-Y') }}</h4>
-                    <p style="text-align: justify; text-justify: inter-word;">{{ article.text }}</p>
+                    <p style="text-align: justify; text-justify: inter-word; font-size: 1.5rem;">{{ article.text }}</p>
                 </span>            
             </div>
             <br>

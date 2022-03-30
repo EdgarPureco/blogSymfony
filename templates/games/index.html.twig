@@ -25,7 +25,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             {% for plateforme in plateformesRepository.findAll %}
-              <li><a class="dropdown-item" style="color: black href="#">{{ plateforme.name }}</a></li>
+              <li><a class="dropdown-item" style="color: black ;"href="#">{{ plateforme.name }}</a></li>
             {% endfor %}
           </ul>
         </li>
@@ -35,7 +35,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             {% for genre in genresRepository.findAll %}
-              <li><a class="dropdown-item" style="color: black href="#">{{ genre.name }}</a></li>
+              <li><a class="dropdown-item" style="color: black;" href="#">{{ genre.name }}</a></li>
             {% endfor %}
           </ul>
         </li>
