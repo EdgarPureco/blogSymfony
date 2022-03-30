@@ -44,14 +44,15 @@
 
     <br>
 
-    <div class="video" id="trailer" >
-     <span class="spancontenu">
+    <div class="video card" id="trailer" >
+    <span class="spancontenu">
       <h1>La bande annonce officiel </h1>
+      <br>
       <iframe src="{{game.video}}" allowfullscreen="" frameborder="0"></iframe>
       </span>
     </div>
 
-    <br class=brtitre">
+    <br class="brtitre">
 
 
 
@@ -97,7 +98,7 @@
 
 
 
-    <br class=brtitre">
+    <br class="brtitre">
      <div class="card" id="actus" >
      <span class="spancontenu">
      <h1>Les dernières actus</h1>
@@ -106,15 +107,12 @@
 
     <br class="brtitre">
     <br class="brtitre">
-  <div class="card" >
-    <button class="buttonback"> <a href="#">Haut  <i class="fa fa-play-circle"></i> </button>
-  </div>
-
-
- <div class="card" >
-    <button class="buttonback"> <a href="{{ path('games_index')}}">Retour à la liste<i class="fa fa-play-circle"></i> </button>
-  </div> 
-
+<div class="fixed-bottom" style="margin: 20px;">
+  <button class="btn btn-primary float-start buttonback"> <a href="{{ path('games_index')}}"><i class="fa fa-arrow-circle-left"></i> Retour à la liste </button>
+  <button class="btn btn-primary float-end buttonback"> <a href="#">Haut  <i class="fa fa-arrow-circle-up"></i> </button>
+</div>
+    
+ 
   
 {% endapply %}
 {% endblock %}
