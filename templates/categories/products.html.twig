@@ -2,20 +2,44 @@
 
 
 {% block body %}
-{% apply inline_css(source("styles/base.css")) %}
+{% apply inline_css(source("styles/base.css"), source("styles/games.css")) %}
+
+{% if is_granted('ROLE_ADMIN') %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Admin</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item active"><a class="nav-link" href="{{ path('admin_categories_add') }}">Ajouter une catégorie</a></li>
+        <li class="nav-item active"><a class="nav-link" href="{{ path('admin_categories_edit', { id: categorie.id }) }}">Modifier la catégorie</a></li>
+        <li class="nav-item active"><a class="nav-link" href="{{ path('admin_categories_delete', { id: categorie.id }) }}">Supprimer la catégorie</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+        {% endif %}
 <div class="box">
+
 <h1>Catégorie {{ categorie.name }}</h1>
+
     <div style="display: flex">
         {% for product in products %}
             {% include 'shared/product-card.html.twig' %}
         {% endfor %}
     </div>
-
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('admin_categories_add') }}">Ajouter une catégorie</a>
-        <a href="{{ path('admin_categories_edit', { id: categorie.id }) }}">Modifier la catégorie</a>
-        <a href="{{ path('admin_categories_delete', { id: categorie.id }) }}">Supprimer la catégorie</a>
-    {% endif %}
     </div>
+    <br>
+    <div class="example-wrapper">
+
+{% for article in articles %}
+{% include 'shared/article-card.html.twig' %}
+{% endfor %}
+</div>
+
+    
     {% endapply %}
 {% endblock %}

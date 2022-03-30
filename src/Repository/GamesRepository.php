@@ -48,11 +48,10 @@ class GamesRepository extends ServiceEntityRepository
   
     public function findByPLateforme($value)
     {
-        return $this->createQueryBuilder('games')
-            ->andWhere('p.name = :val')
-            ->leftJoin('games.plateforme','p')
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.plateforme = :val')
             ->setParameter('val', $value)
-            ->orderBy('games.id', 'ASC')
+            ->orderBy('g.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -61,16 +60,56 @@ class GamesRepository extends ServiceEntityRepository
 
     public function findByGenre($value)
     {
-        return $this->createQueryBuilder('games')
-            ->andWhere('g.name = :val')
-            ->leftJoin('games.genre','g')
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.genre = :val')
+
             ->setParameter('val', $value)
-            ->orderBy('games.id', 'ASC')
+            ->orderBy('g.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
+
+    public function findByTitle($value)
+    {
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.title = :val')
+            ->setParameter('val', $value)
+            ->orderBy('g.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findNewToOld()
+    {
+        return $this->createQueryBuilder('g')
+            ->orderBy('g.year', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findOldtoNew()
+    {
+        return $this->createQueryBuilder('g')
+            ->orderBy('g.year', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /** 
+    * @return Games[]
+    */
+    public function findsearch(): array
+    {
+        return $this->findAll();
+    }
+
+
     
 
     /*

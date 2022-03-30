@@ -13,7 +13,8 @@ class CategoriesController extends AbstractController {
 	public function getProductsForCategory(Category $category): Response {
 		return $this->render('categories/products.html.twig', [
 			'categorie' => $category,
-			'products' => $category->getProducts()
+			'products' => $category->getProducts(),
+			'articles' => $category->getArticles()
 		]);
 	}
 }

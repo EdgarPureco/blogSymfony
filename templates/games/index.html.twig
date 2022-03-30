@@ -8,48 +8,76 @@
     <h1>Liste des jeux videos</h1>
     <br>
 
+      <div class="card">
+    {{ form_start(form, {attr: {class: 'filter'}}) }}
+      {{form_row(form.q)}}
+      <h4>Plateformes</h4>
+       {{form_row(form.plateformes)}}
+       <h4>Genres</h4>
+       {{form_row(form.genres)}}
+
+       <button type="submit">Filtrer</button>
+    {{ form_end(form) }}
+ </div>
+
 
   <div class="panel">
     <div class="panel-heading" >
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
   <div class="container-fluid">
-    <h3>Filtrer par :</h3>
+    <h2>Filtrer par :</h2>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-3 mb-lg-0">
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle filtre" style="color: black;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Plateforme
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             {% for plateforme in plateformesRepository.findAll %}
-              <li><a class="dropdown-item" style="color: black href="#">{{ plateforme.name }}</a></li>
+              <li><a class="dropdown-item" style="color: black" href="{{path('games_plateforme',{ plateforme: plateforme.id})}}">{{ plateforme.name }}</a></li>
             {% endfor %}
           </ul>
         </li>
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle filtre" style="color: black;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Genre
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             {% for genre in genresRepository.findAll %}
-              <li><a class="dropdown-item" style="color: black href="#">{{ genre.name }}</a></li>
+              <li><a class="dropdown-item" style="color: black" href="{{path('games_genre', { genre: genre.id})}}">{{ genre.name }}</a></li>
             {% endfor %}
           </ul>
         </li>
+
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle filtre" style="color: black;" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sortie
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+           
+              <li><a class="dropdown-item" style="color: black" href="{{path('games_new')}}">Nouveautés</a></li>
+              <li><a class="dropdown-item" style="color: black" href="{{path('games_old')}}">Anciens</a></li>
+
+          </ul>
+        </li>
+
       </ul>
+      
     </div>
   </div>
 </nav>
-    </div>
-
+<h2>nnn</h2>
+<br>
 </div>
 </div>
 </div>
-     <a href="{{path("games_plateforme")}}">Cherche par plateforme</a>    
-     <a href="{{path("games_genre")}}">Cherche par genre</a>     
+</div>
 
     <div>
         {% for game in games %}
@@ -57,12 +85,14 @@
 
             <div class="card">
                 <span class="spanphoto">
-                   <img src="{{ game.photo }}" style="width:180%" />
+                   <img src="{{ game.photo }}" />
                 </span>
                 
                 <span class="spancontenu">
-                    <h2>{{ game.title }}</h2>
+                    <h1>{{ game.title }}</h1>
+                    <br class="brtitre">
                     <h4>{{ game.plateforme }}</h4>
+                    <h4>Sortie le {{ game.year.format('d/m/Y') }}</h4>  
                     <br class="brtitre">
                     <p class="paragraphe">{{ game.synopsis }}</p>
                     <p class="paragraphe">...</p>

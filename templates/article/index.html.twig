@@ -9,27 +9,9 @@
 
 <div class="example-wrapper">
 
-<div>
-        {% for article in articles %}
-        <div style="
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
-        margin: auto;
-        display: flex; 
-        flex-direction: row;
-        font-family: arial;
-        width: 100%;">
-                <span class="spancontenu">
-                    <h2><b>{{article.title}}</b></h2>
-                    <br class="brtitre">
-                    <h4 class="paragraphe">Crée le: {{ article.created|date('d-m-Y') }}</h4>
-                    <br>
-                    <p style="text-align: justify; text-justify: inter-word;">{{ article.text }}</p>
-                </span>            
-            </div>
-            <br>
-        {% endfor %}
-    </div>
-   
+{% for article in articles %}
+{% include 'shared/article-card.html.twig' %}
+{% endfor %}
 </div>
 {% endapply %}
 {% endblock %}
