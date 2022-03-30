@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mar. 29 mars 2022 à 10:10
+-- Généré le : mar. 29 mars 2022 à 13:52
 -- Version du serveur :  5.7.34
 -- Version de PHP : 8.0.8
 
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `article`
 --
 
-CREATE TABLE IF NOT EXISTS `article` (
+CREATE TABLE `article` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -50,7 +50,7 @@ INSERT INTO `article` (`id`, `user_id`, `category_id`, `title`, `text`, `created
 -- Structure de la table `category`
 --
 
-CREATE TABLE IF NOT EXISTS `category` (
+CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
@@ -74,7 +74,7 @@ INSERT INTO `category` (`id`, `name`, `type`) VALUES
 -- Structure de la table `comment`
 --
 
-CREATE TABLE IF NOT EXISTS `comment` (
+CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `text` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
 -- Structure de la table `games`
 --
 
-CREATE TABLE IF NOT EXISTS `games` (
+CREATE TABLE `games` (
   `id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `year` date NOT NULL,
@@ -118,7 +118,7 @@ INSERT INTO `games` (`id`, `title`, `year`, `developer`, `synopsis`, `photo`, `p
 -- Structure de la table `genre`
 --
 
-CREATE TABLE IF NOT EXISTS `genre` (
+CREATE TABLE `genre` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -143,7 +143,7 @@ INSERT INTO `genre` (`id`, `name`) VALUES
 -- Structure de la table `orders`
 --
 
-CREATE TABLE IF NOT EXISTS `orders` (
+CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `date` datetime NOT NULL,
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
 -- Structure de la table `order_line`
 --
 
-CREATE TABLE IF NOT EXISTS `order_line` (
+CREATE TABLE `order_line` (
   `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `order_line` (
 -- Structure de la table `plateforme`
 --
 
-CREATE TABLE IF NOT EXISTS `plateforme` (
+CREATE TABLE `plateforme` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -199,7 +199,7 @@ INSERT INTO `plateforme` (`id`, `name`) VALUES
 -- Structure de la table `product`
 --
 
-CREATE TABLE IF NOT EXISTS `product` (
+CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -222,7 +222,7 @@ INSERT INTO `product` (`id`, `category_id`, `name`, `photo`, `price`, `descripti
 -- Structure de la table `type`
 --
 
-CREATE TABLE IF NOT EXISTS `type` (
+CREATE TABLE `type` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -233,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `type` (
 -- Structure de la table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -254,16 +254,6 @@ INSERT INTO `user` (`id`, `name`, `password`, `mail`, `last_login`, `roles`) VAL
 (6, 'Aymane', '$2y$13$L2..flvkm/8STB94xsnFROOj1u2KdVXiUauLZc9kHGFbIjzv33xtW', 'a@a.fr', NULL, 'ROLE_ADMIN'),
 (7, 'User', '$2y$13$bb1Nm2jYlBizkQ0Th7FSPeWWF2NEny6swqyFYrKuCW71l.cebYBJG', 'u@u.fr', NULL, 'ROLE_USER'),
 (8, 'ee', '$2y$13$rMCUsjf8mESVkJK.57/uE.4MkJ352pEs8ReB.dnvIcBVekqCPGYBm', 'e@e.fr', NULL, 'ROLE_USER');
-
-INSERT INTO article values 
-(1, 4, 1, "Nouvelle saison Halo Infinite", "La saison 2 de Halo Infinite devrait être lancée le 2 mai 2022, marquant l’arrivée d’une nouvelle campagne et d’un nouveau contenu multijoueur. Alors que le développeur de Halo Infinite, 343 Industries, ne s’est engagé qu’à une fenêtre de lancement lâche « mai 2022 » pour la saison 2, le Battle Pass existant fournit une date de lancement plus ferme. Le Battle Pass, Heroes of Reach, affiche un compte à rebours jusqu’à la fin de la saison 1, doublant également la date de lancement prévue de la saison 2.
-
-Avec les mises à jour de Halo Infinite traditionnellement déployées à 10 h PT / 13 h HE, la saison 2 devrait suivre le même calendrier, en supposant un lancement le 2 mai.
-
-343 Industries avait précédemment annoncé une approche saisonnière du contenu post-lancement, avec un écart de trois mois entre ces versions importantes. Et alors que la saison 2 devait autrefois être lancée début février 2022, le studio a annoncé plus tard un report de trois mois jusqu’en mai.
-
-« Nous avons pris la décision de prolonger la saison 1 pour nous donner plus de temps pour nous assurer que la saison 2 respecte notre barre de haute qualité et ainsi nous pouvons terminer le développement de la saison 2 de manière saine et durable pour notre équipe », a déclaré Joesph Staten, directeur créatif de Halo Infinite. . Le déménagement a vu la saison 1 s’étendre sur six mois, avec plus d’événements introduits pour compenser la durée d’exécution prolongée.","2022-03-28"),
-(2, 6, 1, "Le Warden est là grace à la Snapshot 22w12a", "Depuis le 24 mars dernier, une nouvelle Snapshot est disponible dans Minecraft et il s'agit de la Snapshot 22w12a. Celle-ci permet l'ajout de nouveautés avec principalement l'introduction du Warden, mais aussi les hurleurs Sculk, ainsi qu'un nouvel enchantement et les bateaux-coffre.", "2022-03-27");
 
 --
 -- Index pour les tables déchargées
