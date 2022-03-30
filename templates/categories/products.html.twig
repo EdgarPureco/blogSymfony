@@ -2,7 +2,7 @@
 
 
 {% block body %}
-{% apply inline_css(source("styles/base.css")) %}
+{% apply inline_css(source("styles/base.css"), source("styles/games.css")) %}
 
 {% if is_granted('ROLE_ADMIN') %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,12 +25,21 @@
 <div class="box">
 
 <h1>Catégorie {{ categorie.name }}</h1>
+
     <div style="display: flex">
         {% for product in products %}
             {% include 'shared/product-card.html.twig' %}
         {% endfor %}
     </div>
-
     </div>
+    <br>
+    <div class="example-wrapper">
+
+{% for article in articles %}
+{% include 'shared/article-card.html.twig' %}
+{% endfor %}
+</div>
+
+    
     {% endapply %}
 {% endblock %}
