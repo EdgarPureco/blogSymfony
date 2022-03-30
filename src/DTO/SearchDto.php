@@ -7,6 +7,11 @@ use App\Entity\Plateforme;
 class SearchDto {
 
 	/**
+	 * @var int
+	 */
+	public $page=1;
+
+	/**
 	 * @var string
 	 */
 	public $q ='';

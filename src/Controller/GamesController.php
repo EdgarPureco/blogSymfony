@@ -12,8 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-#[Route("/games")]
 
+#[Route("/games")]
 class GamesController extends AbstractController
 {
 
@@ -29,6 +29,7 @@ class GamesController extends AbstractController
     public function index(Request $request): Response
     {
         $data = new SearchDto();
+        $data->page = $request->get('page',1);
         $form  = $this->createForm(SearchForm::class, $data);
         $form->handleRequest($request);
         $games = $this->gamesRepository->findsearch($data);
