@@ -53,11 +53,6 @@ class GamesController extends AbstractController
 		]);
 	}
 
-    #[Route("/video", name: "games_video", methods: ["GET"])]
-	public function getVideo(): Response {
-		return $this->render('games/get.html.twig');
-	}
-
 
 
 

@@ -36,7 +36,12 @@ h1{
 .paragraphe {
   color: grey;
   font-size: 1.5rem;
+    height:60px;
+    line-height:20px; /* Height / no. of lines to display */
+    overflow:hidden;
+
 }
+
 span {
   color: grey;
   flex-direction: column;
@@ -107,7 +112,11 @@ span {
       margin: auto;
     }
 
-    iframe{
-      width:100%;
-      height:100%;
-    }
+
+
+
+
+    
+    
+
+    
