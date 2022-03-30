@@ -6,8 +6,10 @@ use App\Entity\Plateforme;
 
 class SearchDto {
 
-	
-	public string $q ='';
+	/**
+	 * @var string
+	 */
+	public $q ='';
 
 	/**
 	 * @var Plateforme[]

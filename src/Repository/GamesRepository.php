@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Repository;
-
+use App\DTO\SearchDto;
 use App\Entity\Games;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
@@ -104,23 +104,35 @@ class GamesRepository extends ServiceEntityRepository
     /** 
     * @return Games[]
     */
-    public function findsearch(): array
+    public function findsearch(SearchDto $search): array
     {
-        return $this->findAll();
+       $query =  $this
+            ->createQueryBuilder('g')
+            ->select('g','p','ge')
+            ->join('g.plateforme', 'p')
+            ->join('g.genre', 'ge');
+
+        if(!empty($search->q)){
+            $query = $query
+            ->andWhere('g.title LIKE :q')
+            ->setParameter('q', "%{$search->q}%");
+        }
+
+        if(!empty($search->plateformes)){
+            $query = $query
+            ->andWhere('p.id in (:plateformes)')
+            ->setParameter('plateformes', $search->plateformes);
+        }
+
+        if(!empty($search->genres)){
+            $query = $query
+            ->andWhere('ge.id in (:genres)')
+            ->setParameter('genres', $search->genres);
+        }
+
+
+           
+        return $query->getQuery()->getResult();
     }
 
-
-    
-
-    /*
-    public function findOneBySomeField($value): ?Games
-    {
-        return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

@@ -8,6 +8,7 @@ use App\Entity\Games;
 use App\Entity\Plateforme;
 use App\Entity\Genre;
 use App\Repository\GamesRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,11 +26,12 @@ class GamesController extends AbstractController
 
 
     #[Route("/", name: "games_index", methods: ["GET"])]
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $data = new SearchDto();
         $form  = $this->createForm(SearchForm::class, $data);
-        $games = $this->gamesRepository->findsearch();
+        $form->handleRequest($request);
+        $games = $this->gamesRepository->findsearch($data);
         return $this->render('games/index.html.twig', [
             'games' => $games,
             'form' =>$form->createView(),
