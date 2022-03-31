@@ -17,12 +17,9 @@ class CommentaireType extends AbstractType
     {
         $builder
             ->add('contenu', CKEditorType::class,[
-                'label' => 'Votre commentaire',
-                'config'      => [
-                    'required' => true,
-                ],
-                'constraints' => [
-                    new NotBlank(),
+                'label' => 'Ajouter un commentaire',
+                'attr'=>[
+                    'class' => 'form-control'
                 ],
             ])
             ->add('parent', HiddenType::class, [
