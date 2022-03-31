@@ -32,6 +32,7 @@ class GamesController extends AbstractController
         $data->page = $request->get('page',1);
         $form  = $this->createForm(SearchForm::class, $data);
         $form->handleRequest($request);
+        //dd($data);
         $games = $this->gamesRepository->findsearch($data);
         return $this->render('games/index.html.twig', [
             'games' => $games,
