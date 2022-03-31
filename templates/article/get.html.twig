@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+   {% apply inline_css(source("styles/games.css")) %}
+
+
+<div id ="#">
+{% include 'shared/article-card.html.twig' %}
+</div>
+
+ <div >
+		<div>
+        <h2>Liste des commentaires</h2>
+        </div>
+
+          <div>
+        <h2>Ajouter des commentaires</h2>
+        {{ form_start(commentForm) }}
+        {{ form_end(commentForm) }}
+        </div>
+
+    </div>
+
+<div class="fixed-bottom" style="margin: 20px;">
+  <button class="btn btn-primary float-start buttonback"> <a href="{{ path('article_index')}}"><i class="fa fa-arrow-circle-left"></i> Retour</button>
+  <button class="btn btn-primary float-end buttonback"> <a href="#">Haut  <i class="fa fa-arrow-circle-up"></i> </button>
+</div>
+    
+ 
+  
+{% endapply %}
+{% endblock %}

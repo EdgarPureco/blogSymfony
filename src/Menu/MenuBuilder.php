@@ -17,7 +17,7 @@ class MenuBuilder
     {
         $menu = $this->factory->createItem('sidebar');
 
-        $menu->addChild('article', ['route' => 'app_article']);
+        $menu->addChild('article', ['route' => 'article_index']);
         $menu->addChild('products', ['route' => 'products_index']);
         return $menu;
     }

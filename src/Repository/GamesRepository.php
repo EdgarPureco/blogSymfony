@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Repository;
-
+use App\DTO\SearchDto;
 use App\Entity\Games;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @method Games|null find($id, $lockMode = null, $lockVersion = null)
@@ -16,72 +16,54 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class GamesRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    /**
+     * @var PaginatorInterface
+     */
+    private $paginator;
+
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Games::class);
+        $this->paginator = $paginator;
     }
 
-    /**
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function add(Games $entity, bool $flush = true): void
-    {
-        $this->_em->persist($entity);
-        if ($flush) {
-            $this->_em->flush();
-        }
-    }
 
-    /**
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function remove(Games $entity, bool $flush = true): void
-    {
-        $this->_em->remove($entity);
-        if ($flush) {
-            $this->_em->flush();
-        }
-    }
-
-  
-    public function findByPLateforme($value)
-    {
-        return $this->createQueryBuilder('games')
-            ->andWhere('p.name = :val')
-            ->leftJoin('games.plateforme','p')
-            ->setParameter('val', $value)
-            ->orderBy('games.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-    public function findByGenre($value)
-    {
-        return $this->createQueryBuilder('games')
-            ->andWhere('g.name = :val')
-            ->leftJoin('games.genre','g')
-            ->setParameter('val', $value)
-            ->orderBy('games.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    
-
-    /*
-    public function findOneBySomeField($value): ?Games
-    {
-        return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
+    /** 
+    * @return PaginationInterface
     */
+    public function findsearch(SearchDto $search): PaginationInterface
+    {
+       $query =  $this
+            ->createQueryBuilder('g')
+            ->select('g','p','ge')
+            ->join('g.plateforme', 'p')
+            ->join('g.genre', 'ge');
+
+        if(!empty($search->q)){
+            $query = $query
+            ->andWhere('g.title LIKE :q')
+            ->setParameter('q', "%{$search->q}%");
+        }
+
+        if(!empty($search->plateformes)){
+            $query = $query
+            ->andWhere('p.id in (:plateformes)')
+            ->setParameter('plateformes', $search->plateformes);
+        }
+
+        if(!empty($search->genres)){
+            $query = $query
+            ->andWhere('ge.id in (:genres)')
+            ->setParameter('genres', $search->genres);
+        }
+           
+        $query = $query->getQuery();
+
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            5
+        );
+    }
+
 }
