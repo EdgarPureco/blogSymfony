@@ -24,6 +24,14 @@ h1{
   width: 40%;
 }
 
+.cardFiltre {
+  margin: auto;
+  display: flex; 
+  flex-direction: row;
+  font-family: arial;
+  width: 20%;
+}
+
 .video{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   margin: auto;
@@ -127,4 +135,25 @@ span {
     
     
 
+    .column {
+      float: left;
+      width: 50%;
+      padding: 10px;
+      height: auto; /* Should be removed. Only for demonstration */
+    }
     
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .pagination{
+      display: table;
+      margin: auto;
+      color: black;
+      flex-direction: column;
+      font-size: 25px;
+    }
+

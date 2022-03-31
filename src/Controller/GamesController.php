@@ -39,33 +39,6 @@ class GamesController extends AbstractController
         ]);
     }
 
-    #[Route("/genre/{genre}", name: "games_genre", methods: ["GET"])]
-	public function getByGenre(Int $genre): Response {
-		return $this->render('games/index.html.twig', [
-            'games' => $this->gamesRepository->findByGenre($genre)
-        ]);
-	}
-
-    #[Route("/plateforme/{plateforme}", name: "games_plateforme", methods: ["GET"])]
-	public function getByPlateforme(Int $plateforme): Response {
-		return $this->render('games/index.html.twig', [
-            'games' => $this->gamesRepository->findByPLateforme($plateforme)
-        ]);
-	}
-
-    #[Route("/oldTonew", name: "games_old", methods: ["GET"])]
-	public function getbyold(): Response {
-		return $this->render('games/index.html.twig', [
-            'games' => $this->gamesRepository->findNewToOld()
-        ]);
-	}
-
-    #[Route("/newToold", name: "games_new", methods: ["GET"])]
-	public function getbynew(): Response {
-		return $this->render('games/index.html.twig', [
-            'games' => $this->gamesRepository->findOldtoNew()
-        ]);
-	}
 
     #[Route("/id/{id}", name: "games_get", methods: ["GET"])]
 	public function getById(Games $game): Response {

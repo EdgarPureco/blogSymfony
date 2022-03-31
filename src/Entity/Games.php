@@ -37,7 +37,6 @@ class Games
     #[ORM\Column(type: 'text', nullable: true)]
     private $video;
 
-
     public function getId(): ?int
     {
         return $this->id;

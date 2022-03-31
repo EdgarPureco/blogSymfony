@@ -56,8 +56,6 @@ class GamesRepository extends ServiceEntityRepository
             ->andWhere('ge.id in (:genres)')
             ->setParameter('genres', $search->genres);
         }
-
-
            
         $query = $query->getQuery();
 

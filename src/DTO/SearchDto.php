@@ -25,4 +25,12 @@ class SearchDto {
 	 * @var Genre[]
 	 */
 	public $genres = [];
+
+	/**
+	 * @var date
+	 */
+	public $dates = "";
+
+
+
 }

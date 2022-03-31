@@ -4,27 +4,32 @@
    {% apply inline_css(source("styles/games.css")) %}
 
 
-<div class="example-wrapper">
+<div class ="row    ">
     <h1>Liste des jeux videos</h1>
-    <br>
+    <br class="brtitre">
 
-      <div class="card">
+      <div class="cardFiltre">
     {{ form_start(form, {attr: {class: 'filter'}}) }}
     
         {{form_row(form.q)}}
 
       <br>
-      <h4>Plateformes</h4>
+       <div class="column">
+       <h4>Plateformes</h4>
+        <br class="brtitre">
        {{form_row(form.plateformes)}}
+       </div>
+        <div class="column">
        <h4>Genres</h4>
+       <br class="brtitre">
        {{form_row(form.genres)}}
-
-       <button type="submit" style="color: black; height:30px;" >Filtrer</button>
+       </div>
+       <button type="submit" class="btn btn-primary w-100">Filtrer</button>
     {{ form_end(form) }}
  </div>
 
 
-  <br>
+  <br class="brtitre">
 
     <div>
         {% for game in games %}
@@ -49,9 +54,10 @@
             <br>
 
         {% endfor %}
-         <div>
+
+        <div class="pagination">
          {{ knp_pagination_render (games)}}
-    </div>
+        </div>
     </div>
     
    
