@@ -10,8 +10,13 @@
 <div class="example-wrapper">
 
 {% for article in articles %}
+ <a href="{{ path('article_get', { id: article.id}) }}">
+
 {% include 'shared/article-card.html.twig' %}
+</a>  
 {% endfor %}
 </div>
+
+       
 {% endapply %}
 {% endblock %}
