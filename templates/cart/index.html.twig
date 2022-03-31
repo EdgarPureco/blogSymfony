@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-{% apply inline_css(source("styles/login.css")) %}
-<div class="box">
+<div class="example-wrapper" style="font-size: 1.5rem; width: 60%; background-color: white; margin-left: 20%; margin-top: 0px;">
 <h1>Panier</h1>
     {% if lines is not empty %}
-        <table>
+        <table class="table">
             <thead>
                 <th>Produit</th>
                 <th>Prix</th>
                 <th>Quantité</th>
-                <th>Total</th>
+                <th>Sous-Total</th>
                 <th>Actions</th>
             </thead>
             <tbody>
@@ -31,27 +30,30 @@
                             <b>{{ line.total | format_currency('EUR', locale = 'fr') }}</b>
                         </td>
                         <td>
-                            <a href="{{ path('products_add_to_cart', {'id': line.product.id }) }}">Ajouter</a>
-                            <a href="{{ path('products_delete_from_cart', {'id': line.product.id }) }}">Supprimer</a>
+                            <a href="{{ path('products_add_to_cart', {'id': line.product.id }) }}"><button type="button" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></a>
+                            <a href="{{ path('products_delete_from_cart', {'id': line.product.id }) }}"><button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button></a>
                         </td>
+                    </tr>
+                    <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total : <b>{{ total | format_currency('EUR', locale = 'fr') }}</b></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-
-        <div>
-            Montant total : <b>{{ total | format_currency('EUR', locale = 'fr') }}</b>
-        </div>
-
-        <a href="{{ path('cart_clear') }}">Vider</a>
+        <div class="container text-end">
+        <a href="{{ path('cart_clear') }}"><button type="button" class="btn btn-outline-primary">Vider</button></a>
         {% if is_granted('ROLE_USER') %}
-            <a href="{{ path('orders_add') }}">Commander</a>
+            <a href="{{ path('orders_add') }}"><button type="button" class="btn btn-outline-primary">Commander</button></a>
         {% else %}
             <b>Connectez-vous pour commander</b>
         {% endif %}
     {% else %}
         Le panier est vide
     {% endif %}
+        </div>
+        
     </div>
-    {% endapply %}
 {% endblock %}

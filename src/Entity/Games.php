@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\GamesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: GamesRepository::class)]
@@ -28,7 +30,9 @@ class Games
     #[ORM\Column(type: 'string', length: 255)]
     private $photo;
 
-    #[ORM\ManyToOne(targetEntity: Plateforme::class, inversedBy: 'games')]
+
+    #[ORM\ManyToMany(targetEntity: Plateforme::class, inversedBy: 'games')]
+    #[ORM\JoinTable(name:'games_plateformes')]
     private $plateforme;
 
     #[ORM\ManyToOne(targetEntity: Genre::class, inversedBy: 'games')]
@@ -37,6 +41,9 @@ class Games
     #[ORM\Column(type: 'text', nullable: true)]
     private $video;
 
+    public function __construct(){
+        $this->plateforme = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,17 +110,17 @@ class Games
         return $this;
     }
 
-    public function getPlateforme(): ?Plateforme
-    {
-        return $this->plateforme;
-    }
+    // public function getPlateforme(): ?Plateforme
+    // {
+    //     return $this->plateforme;
+    // }
 
-    public function setPlateforme(?Plateforme $plateforme): self
-    {
-        $this->plateforme = $plateforme;
+    // public function setPlateforme(?Plateforme $plateforme): self
+    // {
+    //     $this->plateforme = $plateforme;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getGenre(): ?Genre
     {
@@ -136,6 +143,25 @@ class Games
     {
         $this->video = $video;
 
+        return $this;
+    }
+
+     /**
+     * @return Collection
+     */
+    public function getPlateforme(): ?Collection
+    {
+        return $this->plateforme;
+    }
+
+    /**
+     * @param Plateforme $plateforme
+     */
+    public function setPlateforme(?ArrayCollection $plateforme): self
+    {
+        $plateforme->addGame($this);
+
+        $this-> plateforme[] = $plateforme;
         return $this;
     }
 

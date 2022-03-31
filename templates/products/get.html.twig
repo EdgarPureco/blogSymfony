@@ -4,30 +4,39 @@
 
 {% block body %}
 {% apply inline_css(source("styles/base.css")) %}
-<div class="box">
-<h1>{{ product.name }} #{{ product.id }}</h1>
-    <p>Dans la catégorie <a href="{{ path('categories_get_products', { id: product.category.id}) }}">{{ product.category.name }}</a></p>
-
-    <pre>{{ product.description }}</pre>
-
-    <div>Prix : {{ product.price | format_currency('EUR', locale = 'fr') }}</div>
-
-    {% if product.photo is not null %}
-        <img src="/{{ product.photo }}" alt="Image pour {{ product.name }}" />
+{% if is_granted('ROLE_ADMIN') %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a style="color: black;" class="navbar-brand" href="#">Admin</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li  class="nav-item active"><a href="{{ path('admin_products_edit', { id: product.id }) }}"><button type="button" class="btn btn-dark">Modifier</button></a></li>
+        <li  class="nav-item active"></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+        {% endif %}
+        <br><br>
+<div class="box text-center" style="font-size: 2rem;">
+<div class="card text-center" >
+  {% if product.photo is not null %}
+        <img src="/{{ product.photo }}" alt="Image pour {{ product.name }}" class="card-img-top" alt="..."/>
     {% else %}
-        <img src="/assets/no_image.jpg" alt="Aucune image pour {{ product.name }}" />
+        <img src="/assets/no_image.jpg"class="card-img-top" alt="Aucune image pour {{ product.name }}" />
     {% endif %}
-
-    <br />
-
-    <a href="{{ path('products_add_to_cart', {'id': product.id }) }}">Ajouter au panier</a>
-
-    <br />
-
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('admin_products_edit', { id: product.id }) }}"><button type="button" class="btn btn-dark">Modifier</button></a>
-        <a href="{{ path('admin_products_delete', { id: product.id }) }}"><button type="button" class="btn btn-dark">Supprimer</button></a>
-    {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }} #{{ product.id }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Dans la catégorie <a href="{{ path('categories_get_products', { id: product.category.id}) }}">{{ product.category.name }}</a></h6>
+    <p class="card-text">{{ product.description }}</p>
+    <div>Prix : {{ product.price | format_currency('EUR', locale = 'fr') }}</div>
+    <a href="{{ path('products_add_to_cart', {'id': product.id }) }}"><button type="button" class="btn btn-primary btn-lg"><i class="fa fa-plus-circle"></i></button></a>
+  </div>
+</div>
+    
     </div>
     {% endapply %}
 

@@ -61,7 +61,15 @@
                 
                 <span class="spancontenu">
                     <h2>{{ game.title }}</h2>
-                    <h4>{{ game.plateforme }}</h4>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          {% for plateforme in game.plateforme %}
+                            <th scope="col">{{plateforme}}</th>
+                          {% endfor %}
+                        </tr>
+                      </thead>
+                    </table>
                     <br class="brtitre">
                     <p class="paragraphe">{{ game.synopsis }}</p>
                     <p class="paragraphe">...</p>
