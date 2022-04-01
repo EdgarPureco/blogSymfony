@@ -35,7 +35,8 @@ class Games
     #[ORM\JoinTable(name:'games_plateformes')]
     private $plateforme;
 
-    #[ORM\ManyToOne(targetEntity: Genre::class, inversedBy: 'games')]
+    #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'games')]
+    #[ORM\JoinTable(name:'games_genres')]
     private $genre;
 
     #[ORM\Column(type: 'text', nullable: true)]
@@ -43,6 +44,8 @@ class Games
 
     public function __construct(){
         $this->plateforme = new ArrayCollection();
+        $this->genre = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -122,17 +125,7 @@ class Games
     //     return $this;
     // }
 
-    public function getGenre(): ?Genre
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(?Genre $genre): self
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
+  
 
     public function getVideo(): ?string
     {
@@ -162,6 +155,25 @@ class Games
         $plateforme->addGame($this);
 
         $this-> plateforme[] = $plateforme;
+        return $this;
+    }
+
+     /**
+     * @return Collection
+     */
+    public function getGenre(): ?Collection
+    {
+        return $this->genre;
+    }
+
+    /**
+     * @param Genre $genre
+     */
+    public function setGenre(?ArrayCollection $genre): self
+    {
+        $genre->addGame($this);
+
+        $this-> genre[] = $genre;
         return $this;
     }
 

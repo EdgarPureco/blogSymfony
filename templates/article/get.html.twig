@@ -13,23 +13,34 @@
 
 
 <div class="card">
+
   <span class="spancontenu">
- <h2><b>Liste des commentaires</b></h2>
+ <h2><b>Section commentaires</b></h2>
  <br class="brtitre">
   {% for commentaire in article.commentaires %}
   {% if commentaire.parent ==  null %}
-  <h4>Publié par {{commentaire.user}} le {{commentaire.createdAt | date("d/m/Y H:i")}}</h4>
+       <span class="spanphoto">
+       <i class="fa fa-user"></i>
+       </span>
+  <h4>{{commentaire.user}} </h4>
   <div>{{commentaire.contenu|raw}}</div>
-  <button><a href="#ajouter-commentaire" data-reply data-id="{{commentaire.id}}">Répondre</a></button>
+  <h5>{{commentaire.createdAt | date("d/m/Y H:i")}}</h5>
+  <button class="btn btn-primary w-100"><a href="#ajouter-commentaire" data-reply data-id="{{commentaire.id}}">Répondre</a></button>
   <br class="titre">
-    {% for reply in commentaire.replies %}
-      <h4>Réponse publié par {{reply.user}} le {{reply.createdAt | date("d/m/Y H:i")}}</h4>
-      <div>{{reply.contenu|raw}}</div>
-        <br class="titre">
 
+
+    {% for reply in commentaire.replies %}
+    
+    <h4> --> Réponse : </h4>
+     <span class="spanphoto">
+       <i class="fa fa-user"></i>
+       </span>
+     <h4>{{reply.user}} </h4>
+    <div>{{reply.contenu|raw}}</div>
+    <h5>{{reply.createdAt | date("d/m/Y H:i")}}</h5>
       {% endfor %}
-   {% endif %}
-  {% endfor %}
+      {% endif %}
+      {% endfor %}
 <br>
 <div id="ajouter-commentaire">
     {{ form(commentForm) }}
