@@ -41,8 +41,15 @@ class ArticleController extends AbstractController
         if ($commentForm->isSubmitted() && $commentForm->isValid()){
             $commentaire->setCreatedAt(new DateTimeImmutable());
             $commentaire->setArticle($article);
+            //on recupere le parentid, qui n'est pas ajouter en base automatiquement car en mapped false
+            $parentid = $commentForm->get("parentid")->getData();
             $commentaire->setUser($this->getUser());
             $entityManager = $doctrine->getManager();
+            //on recupére le parent associé, peut etre vide si le commentaire n'est pas une réponse
+            if($parentid != null){
+                $parent = $entityManager->getRepository(Commentaire::class)->find($parentid);
+            }
+            $commentaire->setParent($parent ?? null);
             $entityManager->persist($commentaire);
             $entityManager->flush();
             $this->addFlash('message', 'Votre commentaire a bien été envoyé');
