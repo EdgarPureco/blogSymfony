@@ -42,8 +42,15 @@
                 
                 <span class="spancontenu">
                     <h1>{{ game.title }}</h1>
-                    <br class="brtitre">
-                    <h4>{{ game.plateforme }}</h4>
+                    <table class="table">
+                      <thead>
+                        <tr style="text-align:center;width:30%;">
+                          {% for plateforme in game.plateforme %}
+                          <th style="font-size: 1.5rem;" scope="col">{{plateforme.name}}</th>
+                          {% endfor %}
+                        </tr>
+                      </thead>
+                    </table>
                     <h4>Sortie le {{ game.year.format('d/m/Y') }}</h4>  
                     <br class="brtitre">
                     <p class="paragraphe">{{ game.synopsis }}</p>

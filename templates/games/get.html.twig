@@ -22,11 +22,11 @@
     </div>
 </div>
 <br>
-  <div class="card" id="content" >
+  <div class="card" style="width: 60%;" id="content" >
                <span class="spanphoto">
                <img src="{{ game.photo }}"/>
                 <br class="brtitre">
-                <button> <a href="#trailer">Bande annonce  <i class="fa fa-play-circle"></i> </button>
+                <button> <a href="#trailer">Trailer  <i class="fa fa-play-circle"></i> </button>
                 <br class="brtitre">
                 <button> <a href="#images">Images  <i class="fa fa-image"></i> </button>
                 <br class="brtitre">
@@ -52,16 +52,14 @@
 
     <br>
 
-    <div class="video card" id="trailer" >
-    <span class="spancontenu">
+   <div class="card video" style="width: 60%;" id="trailer" >
+     <span class="spancontenu">
       <h1>La bande annonce officiel </h1>
       <br>
-      <iframe src="{{game.video}}" allowfullscreen="" frameborder="0"></iframe>
-      </span>
+      <iframe width="560" height="315" src="{{game.video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></span>
     </div>
 
     <br class="brtitre">
-
 
 
     <div class="card" id="images" >

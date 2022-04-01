@@ -22,7 +22,7 @@ class CommentaireType extends AbstractType
                     'class' => 'form-control'
                 ],
             ])
-            ->add('parent', HiddenType::class, [
+            ->add('parentid', HiddenType::class, [
                 'mapped' => false
             ])
             ->add('user', HiddenType::class)

@@ -18,7 +18,7 @@ class Plateforme
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\OneToMany(mappedBy: 'plateforme', targetEntity: Games::class)]
+    #[ORM\ManytoMany(mappedBy: 'plateforme', targetEntity: Games::class)]
     private $games;
 
     public function __construct()
