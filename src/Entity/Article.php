@@ -43,6 +43,15 @@ class Article
         $this->commentaires = new ArrayCollection();
     }
 
+    /**
+	 * @param ArticleDto $articleDto
+	 */
+	public function setFromDto(AbstractDto $articleDto): void {
+        $this->setTitle($articleDto->title);
+        $this->setText($articleDto->text);
+        $this->setCategory($articleDto->category);
+        $this->setCreated($articleDto->created);
+    }
     public function getId(): ?int
     {
         return $this->id;

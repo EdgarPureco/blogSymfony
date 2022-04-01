@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% apply inline_css(source("styles/login.css")) %}
+<div class="box">
+{% if isAdd %}
+        <h1>Ajout d'un article</h1>
+    {% else %}
+        <h1>Modification d'une categorie {{ article.name }}</h1>
+    {% endif %}
+    {{ form_start(form) }}
+    {{ form_widget(form.title, {'attr': {'class': 'email', 'placeholder': 'Titre'}}) }}
+    {{ form_widget(form.text, {'attr': {'class': 'email', 'placeholder': 'Text'}}) }}
+    {{ form_widget(form.category, {'attr': {'class': 'email', 'placeholder': 'Category'}}) }}
+    {# {{ form_widget(form.created, {'attr': {'class': 'email', 'placeholder': 'Created'}}) }} #}
+    <button class="btn" type="submit">Valider!</button>
+    {{ form_end(form) }}
+    
+    </div> <!-- End Box -->
+    {% endapply %}
+{% endblock %}

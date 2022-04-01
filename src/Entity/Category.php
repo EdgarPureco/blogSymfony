@@ -13,10 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Category extends AbstractEntity
 {
 	#[ORM\Column(type: "string", length: 255, nullable: false)]
-                                                    private string $name;
+    private string $name;
 
 	#[ORM\OneToMany(mappedBy: "category", targetEntity: Product::class)]
-                                                    private Collection $products;
+    private Collection $products;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Article::class)]
     private $articles;
@@ -36,8 +36,9 @@ class Category extends AbstractEntity
 	 * @param CategoryDto $categoryDto
 	 */
 	public function setFromDto(AbstractDto $categoryDto): void {
-                                                		$this->setName($categoryDto->name);
-                                                	}
+        $this->setName($categoryDto->name);
+        $this->setType($categoryDto->type);
+    }
 
     public function getName(): string
     {

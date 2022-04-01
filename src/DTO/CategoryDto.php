@@ -12,10 +12,15 @@ class CategoryDto extends AbstractDto {
 	#[Assert\Length(max: 250)]
 	public string $name;
 
+	#[Assert\NotBlank]
+	#[Assert\Length(max: 250)]
+	public string $type;
+
 	/**
 	 * @param Category $category
 	 */
 	public function setFromEntity(AbstractEntity $category): void {
 		$this->name = $category->getName();
+		$this->type = $category->getType();
 	}
 }
