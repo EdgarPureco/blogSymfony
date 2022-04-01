@@ -10,15 +10,11 @@
 <div class="panel">
     <h1>{{game.title}}</h1>
     <br class="brtitre">
-    <table class="table">
-  <thead>
-    <tr>
+    
     {% for plateforme in game.plateforme %}
-    <th scope="col">{{plateforme}}</th>
+   {{plateforme}} /
     {% endfor %}
-    </tr>
-  </thead>
-</table>
+   
     </div>
 </div>
 <br>
@@ -45,7 +41,9 @@
                     {{ game.developer }}
                    <br>
                     <span>Genre : </span>
-                    {{ game.genre }}
+                     {% for genre in game.genre %}
+                    {{genre}} - 
+                      {% endfor %}
                    <br>
                 </span> 
             </div>

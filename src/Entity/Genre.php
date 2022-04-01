@@ -18,15 +18,13 @@ class Genre
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\OneToMany(mappedBy: 'genre', targetEntity: Games::class)]
+    #[ORM\ManytoMany(mappedBy: 'genre', targetEntity: Games::class)]
     private $games;
 
     public function __construct()
     {
         $this->games = new ArrayCollection();
     }
-
-  
 
     public function getId(): ?int
     {
@@ -79,6 +77,4 @@ class Genre
     {
         return $this->name;
     }
-
-
 }

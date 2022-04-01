@@ -50,6 +50,14 @@
                           {% endfor %}
                         </tr>
                       </thead>
+
+                       <thead>
+                        <tr style="text-align:center;width:30%;">
+                          {% for genre in game.genre %}
+                          <th style="font-size: 1.5rem;" scope="col">{{genre.name}}</th>
+                          {% endfor %}
+                        </tr>
+                      </thead>
                     </table>
                     <h4>Sortie le {{ game.year.format('d/m/Y') }}</h4>  
                     <br class="brtitre">
